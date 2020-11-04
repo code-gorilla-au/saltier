@@ -22,7 +22,7 @@ export function pipe(...fns) {
   return (initValue) => fns.reduce((prevVal, val) => val(prevVal), initValue);
 }
 
-export function compose(...fns) {
+export function composeN(...fns) {
   const reversedFn = fns.reverse();
   return (initVal) => pipe(...reversedFn)(initVal);
 }

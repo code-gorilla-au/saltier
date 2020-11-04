@@ -18,7 +18,7 @@ describe('pipe()', () => {
 
 describe('compose()', () => {
   it('should return 3', () => {
-    const stuff = compose.compose(
+    const stuff = compose.composeN(
       (value) => value - 3,
       (value) => value * 2,
     )(3);
