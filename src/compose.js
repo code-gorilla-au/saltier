@@ -11,11 +11,18 @@
  * @param {composeFunction} fn2
  */
 export function composeTwo(fn1, fn2) {
-  return function compose(value) {
-    return fn1(fn2(value));
-  };
+  return (value) => fn1(fn2(value));
 }
 
+/**
+ * Performs left-to-right function composition
+ * @param  {...composeFunction} fns
+ */
 export function pipe(...fns) {
   return (initValue) => fns.reduce((prevVal, val) => val(prevVal), initValue);
+}
+
+export function compose(...fns) {
+  const reversedFn = fns.reverse();
+  return (initVal) => pipe(...reversedFn)(initVal);
 }
