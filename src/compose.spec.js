@@ -24,9 +24,16 @@ describe('compose()', () => {
     )(3);
     expect(stuff).toEqual(3);
   });
+  it('should return 3', () => {
+    const stuff = compose.composeN(
+      (value) => value - 9,
+      (value) => value * 4,
+    )(3);
+    expect(stuff).toEqual(3);
+  });
 });
 
-describe('composeTwo', () => {
+describe('composeTwo()', () => {
   it('should return 3', () => {
     const stuff = compose.composeTwo(
       (value) => value + 1,
