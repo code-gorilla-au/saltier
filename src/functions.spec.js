@@ -1,4 +1,4 @@
-import * as compose from './compose';
+import * as compose from './functions';
 
 describe('pipe()', () => {
   it('should return 3', () => {
