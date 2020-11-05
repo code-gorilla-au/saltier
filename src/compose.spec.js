@@ -18,14 +18,14 @@ describe('pipe()', () => {
 
 describe('compose()', () => {
   it('should return 3', () => {
-    const stuff = compose.composeN(
+    const stuff = compose.compose(
       (value) => value - 3,
       (value) => value * 2,
     )(3);
     expect(stuff).toEqual(3);
   });
   it('should return 3', () => {
-    const stuff = compose.composeN(
+    const stuff = compose.compose(
       (value) => value - 9,
       (value) => value * 4,
     )(3);
