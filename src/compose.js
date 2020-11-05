@@ -22,6 +22,10 @@ export function pipe(...fns) {
   return (initValue) => fns.reduce((prevVal, val) => val(prevVal), initValue);
 }
 
+/**
+ * Performs right-to-left function composition
+ * @param  {...composeFunction} fns
+ */
 export function composeN(...fns) {
   const reversedFn = fns.reverse();
   return (initVal) => pipe(...reversedFn)(initVal);
