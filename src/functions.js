@@ -19,7 +19,7 @@ export function composeTwo(fn1, fn2) {
  * @param  {...composeFunction} fns
  */
 export function pipe(...fns) {
-  return (initValue) => fns.reduce((prevVal, val) => val(prevVal), initValue);
+  return (initValue) => fns.reduce((prevFn, fn) => fn(prevFn), initValue);
 }
 
 /**
@@ -27,6 +27,5 @@ export function pipe(...fns) {
  * @param  {...composeFunction} fns
  */
 export function compose(...fns) {
-  const reversedFn = fns.reverse();
-  return (initVal) => pipe(...reversedFn)(initVal);
+  return (initValue) => fns.reduceRight((prevFn, fn) => fn(prevFn), initValue);
 }
