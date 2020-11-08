@@ -58,7 +58,7 @@ describe('composeTwo()', () => {
 });
 
 describe('debounce', () => {
-  it('should work', async () => {
+  it('should invoke twice', async () => {
     let foo = 0;
     const bar = compose.debounce(() => {
       foo += 1;
