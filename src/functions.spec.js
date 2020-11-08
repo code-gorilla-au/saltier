@@ -56,3 +56,17 @@ describe('composeTwo()', () => {
     expect(stuff(3)).toEqual(3);
   });
 });
+
+describe('debounce', () => {
+  it('should work', async () => {
+    let foo = 0;
+    const bar = compose.debounce(() => {
+      foo += 1;
+    }, 100);
+    bar();
+    bar();
+    await new Promise((r) => setTimeout(r, 200));
+    bar();
+    expect(foo).toEqual(2);
+  });
+});
