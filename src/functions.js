@@ -37,20 +37,18 @@ export function compose(...fns) {
  */
 export function debounce(fn, waitMs) {
   const wait = parseInt(waitMs, 10);
-  // eslint-disable-next-line prefer-rest-params
-  const lastArgs = arguments;
-  const lastThis = this;
   let lastInvoked = Date.now();
-  function debounced() {
-    let result = () => { };
+  function debounced(...args) {
+    const lastThis = this;
     const timeNow = Date.now();
     const timeSinceLastInvoke = timeNow - lastInvoked;
     const waitRemaining = wait - timeSinceLastInvoke;
+    let result = () => { };
     if (waitRemaining < 0) {
       return result;
     }
     lastInvoked = timeNow;
-    result = fn.apply(lastThis, lastArgs);
+    result = fn.apply(lastThis, args);
     return result;
   }
   return debounced;

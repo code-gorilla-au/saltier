@@ -69,4 +69,35 @@ describe('debounce', () => {
     bar();
     expect(foo).toEqual(2);
   });
+  it('should pass this and args', async () => {
+    let foo = 0;
+    const bar = compose.debounce((value) => {
+      foo += value;
+    }, 100);
+    bar(6);
+    expect(foo).toEqual(6);
+  });
+  it('should be able to return a value', async () => {
+    let foo = 1;
+    const bar = compose.debounce((value) => {
+      foo += value;
+      return foo;
+    }, 100);
+    const baz = bar(6);
+    expect(baz).toEqual(7);
+  });
+  it('keep this context', async () => {
+    const slap = {
+      foo: 1,
+      bar: 2,
+      add4: function add4() {
+        this.foo += 4;
+        this.bar += 4;
+      },
+    };
+    const bar = compose.debounce(slap.add4.bind(slap), 100);
+    bar();
+    expect(slap.foo).toEqual(5);
+    expect(slap.bar).toEqual(6);
+  });
 });
