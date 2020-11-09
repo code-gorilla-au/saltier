@@ -69,7 +69,7 @@ describe('debounce', () => {
     bar();
     expect(foo).toEqual(2);
   });
-  it('should pass this and args', async () => {
+  it('should pass args', async () => {
     let foo = 0;
     const bar = fns.debounce((value) => {
       foo += value;
