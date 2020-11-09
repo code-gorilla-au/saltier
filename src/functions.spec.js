@@ -65,7 +65,7 @@ describe('debounce', () => {
     }, 100);
     bar();
     bar();
-    await new Promise((r) => setTimeout(r, 200));
+    await new Promise((r) => setTimeout(r, 110));
     bar();
     expect(foo).toEqual(2);
   });
