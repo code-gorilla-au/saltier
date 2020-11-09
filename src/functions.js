@@ -33,7 +33,7 @@ export function compose(...fns) {
 /**
  * Creates a throttled function that only invokes func at most once per every wait milliseconds
  * @param {composeFunction} fn function to be invoked
- * @param {Number} waitMs wait miliseconds
+ * @param {Number} waitMs wait milliseconds
  */
 export function debounce(fn, waitMs) {
   const wait = parseInt(waitMs, 10);
