@@ -1,4 +1,4 @@
-import * as arrays from './array';
+import * as arrays from '../src/array';
 
 describe('unique()', () => {
   it('should return a list of numbers', () => {
