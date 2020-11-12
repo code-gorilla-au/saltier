@@ -1,7 +1,7 @@
 {
-  "name": "functional",
+  "name": "saltier",
   "version": "1.0.0",
-  "description": "some functional work",
+  "description": "small collection of utility functions",
   "main": "src/index.js",
   "scripts": {
     "clean": "rm -rf coverage",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/code-gorilla-au/functional-js.git"
+    "url": "git+https://github.com/code-gorilla-au/saltier.git"
   },
   "author": "mauricio riquelme",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/code-gorilla-au/functional-js/issues"
+    "url": "https://github.com/code-gorilla-au/saltier/issues"
   },
-  "homepage": "https://github.com/code-gorilla-au/functional-js#readme",
+  "homepage": "https://github.com/code-gorilla-au/saltier#readme",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
