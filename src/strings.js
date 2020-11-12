@@ -67,8 +67,3 @@ export function truncateText(text, maxLength = 150) {
   }
   return `${text.substring(0, maxLength)} ...`;
 }
-
-const oldString = 'PascalCase';
-const titleCase = oldString.replace(/([a-z])([A-Z])/g, (allMatches, firstMatch, secondMatch) => `${firstMatch} ${secondMatch}`)
-  .toLowerCase()
-  .replace(/([ -_]|^)(.)/g, (allMatches, firstMatch, secondMatch) => (firstMatch ? ' ' : '') + secondMatch.toUpperCase());
