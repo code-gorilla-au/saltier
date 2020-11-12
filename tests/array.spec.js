@@ -6,6 +6,10 @@ describe('unique()', () => {
     const test = arrays.unique(list);
     expect(test).toEqual([1, 2, 3, 4]);
   });
+  it('should return a empty list', () => {
+    const test = arrays.unique();
+    expect(test).toEqual([]);
+  });
   it('should return a list of strings', () => {
     const list = ['one', 'two', 'three', 'three'];
     const test = arrays.unique(list);
@@ -27,6 +31,10 @@ describe('tail', () => {
     const list = [1, 2, 3, 4];
     const test = arrays.tail(list);
     expect(test).toEqual([2, 3, 4]);
+  });
+  it('should return empty list', () => {
+    const test = arrays.tail();
+    expect(test).toEqual([]);
   });
   it('should return two,three, four', () => {
     const list = ['one', 'two', 'three', 'four'];

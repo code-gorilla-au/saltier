@@ -20,11 +20,6 @@ export function isPassedDate(value = '') {
   );
 }
 
-/**
- * returns the age of base on date
- * @param {Date} birthDate birthday of the user
- * @return {Number} age
- */
-export function toAge(birthDate) {
-  return Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e+10);
+export function foo() {
+  throw Error('not implemented');
 }
