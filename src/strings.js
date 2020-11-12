@@ -18,7 +18,7 @@ export function stripPrefix(value, ...prefixes) {
  * @param {string} value string to have the prefix added
  * @param {string} prefixValue expected prefix
  */
-export function prefix(value = '', prefixValue = '') {
+export function addPrefix(value = '', prefixValue = '') {
   if (value === '' || prefixValue === '') {
     return value;
   }

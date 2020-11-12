@@ -1,6 +1,6 @@
 import {
   stripPrefix,
-  prefix,
+  addPrefix,
   toTitleCase,
   capitalise,
   truncateText,
@@ -33,19 +33,19 @@ describe('Strings', () => {
 
 describe('prefix()', () => {
   it('should return prefix', () => {
-    expect(prefix('hello', 'world')).toEqual('worldhello');
+    expect(addPrefix('hello', 'world')).toEqual('worldhello');
   });
   it('should return string without prefix', () => {
-    expect(prefix('hello')).toEqual('hello');
+    expect(addPrefix('hello')).toEqual('hello');
   });
   it('should return empty string', () => {
-    expect(prefix()).toEqual('');
+    expect(addPrefix()).toEqual('');
   });
   it('should return empty string', () => {
-    expect(prefix('', 'foo')).toEqual('');
+    expect(addPrefix('', 'foo')).toEqual('');
   });
   it('should return string without extra prefix', () => {
-    expect(prefix('fooworld', 'foo')).toEqual('fooworld');
+    expect(addPrefix('fooworld', 'foo')).toEqual('fooworld');
   });
 });
 
