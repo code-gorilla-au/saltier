@@ -1,2 +1,3 @@
-# functional-js
-some functional work
+# saltier
+
+Small collection of utility functions

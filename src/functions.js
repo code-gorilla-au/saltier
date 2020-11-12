@@ -9,6 +9,7 @@
  * Compose two function
  * @param {composeFunction} fn1
  * @param {composeFunction} fn2
+ * @returns {composeFunction} compose function
  */
 export function composeTwo(fn1, fn2) {
   return (value) => fn1(fn2(value));
@@ -17,6 +18,7 @@ export function composeTwo(fn1, fn2) {
 /**
  * Performs left-to-right function composition
  * @param  {...composeFunction} fns
+ * @returns {composeFunction} compose function
  */
 export function pipe(...fns) {
   return (initValue) => fns.reduce((prevFn, fn) => fn(prevFn), initValue);
@@ -25,6 +27,7 @@ export function pipe(...fns) {
 /**
  * Performs right-to-left function composition
  * @param  {...composeFunction} fns
+ * @returns {any} result of your compose
  */
 export function compose(...fns) {
   return (initValue) => fns.reduceRight((prevFn, fn) => fn(prevFn), initValue);
@@ -34,6 +37,7 @@ export function compose(...fns) {
  * Creates a throttled function that only invokes func at most once per every wait milliseconds
  * @param {composeFunction} fn function to be invoked
  * @param {Number} waitMs wait milliseconds
+ * @returns {any}
  */
 export function debounce(fn, waitMs) {
   const wait = parseInt(waitMs, 10);
