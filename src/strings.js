@@ -29,16 +29,6 @@ export function addPrefix(value = '', prefixValue = '') {
 }
 
 /**
- * Takes CamelCase and inserts spaces before each capital
- * @param {String} value - String of camel case
- */
-export function toTitleCase(value) {
-  let result = value.replace(/([a-z])([A-Z])/g, '$1 $2');
-  result = result.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
-  return result;
-}
-
-/**
  * capitalise every word in a given sentence
  * @param {String} value sentence
  */
@@ -48,6 +38,22 @@ export function capitalise(value) {
     .split(' ')
     .map((blob) => blob.charAt(0).toUpperCase() + blob.substring(1))
     .join(' ');
+}
+
+/**
+ * Takes in Pascal, kebab, camel case and converts to title case
+ * @param {String} value - pascal, pnake, pamel case
+ */
+export function toTitleCase(value) {
+  let result = value.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
+  result = result.replace(/([a-z])([A-Z])/g, '$1 $2');
+  result = result.charAt(0).toUpperCase() + result.substring(1);
+  const symbolMatch = RegExp('[-_]', 'g');
+  if (result.match(symbolMatch)) {
+    result = result.replace(symbolMatch, ' ');
+    result = capitalise(result);
+  }
+  return result;
 }
 
 /**
@@ -61,3 +67,8 @@ export function truncateText(text, maxLength = 150) {
   }
   return `${text.substring(0, maxLength)} ...`;
 }
+
+const oldString = 'PascalCase';
+const titleCase = oldString.replace(/([a-z])([A-Z])/g, (allMatches, firstMatch, secondMatch) => `${firstMatch} ${secondMatch}`)
+  .toLowerCase()
+  .replace(/([ -_]|^)(.)/g, (allMatches, firstMatch, secondMatch) => (firstMatch ? ' ' : '') + secondMatch.toUpperCase());
