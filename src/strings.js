@@ -3,7 +3,7 @@
  * @param {string} value string to be stripped
  * @param {Array<string>} prefixes a list of prefix's to strip
  */
-export function stripPrefix(value = '', ...prefixes) {
+export function stripPrefix(value, ...prefixes) {
   let strippedValue = value;
   prefixes.forEach((p) => {
     if (strippedValue.startsWith(p)) {
@@ -42,7 +42,7 @@ export function toTitleCase(value) {
  * capitalise every word in a given sentence
  * @param {String} value sentence
  */
-export function capitalise(value = '') {
+export function capitalise(value) {
   return value
     .toLowerCase()
     .split(' ')
@@ -55,7 +55,7 @@ export function capitalise(value = '') {
  * @param {string} text - string to truncate
  * @param {number} maxLength - max length of string before truncating
  */
-export function truncateText(text = '', maxLength = 150) {
+export function truncateText(text, maxLength = 150) {
   if (text.length <= maxLength) {
     return text;
   }

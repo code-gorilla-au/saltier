@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
-import jest from 'jest';
-
 import {
   stripPrefix,
   prefix,
@@ -28,6 +24,10 @@ describe('Strings', () => {
       const test = 'foobarbin';
       expect(stripPrefix(test, 'foo', 'bar')).toEqual('bin');
     });
+    it('should not trim', () => {
+      const test = 'foobarbin';
+      expect(stripPrefix(test, ['slash'])).toEqual(test);
+    });
   });
 });
 
@@ -37,6 +37,9 @@ describe('prefix()', () => {
   });
   it('should return string without prefix', () => {
     expect(prefix('hello')).toEqual('hello');
+  });
+  it('should return empty string', () => {
+    expect(prefix()).toEqual('');
   });
   it('should return empty string', () => {
     expect(prefix('', 'foo')).toEqual('');
@@ -78,5 +81,9 @@ describe('truncateText()', () => {
   it('should return all text', () => {
     const text = 'hello world';
     expect(truncateText(text, 50)).toEqual('hello world');
+  });
+  it('should return all text', () => {
+    const text = 'hello world';
+    expect(truncateText(text)).toEqual('hello world');
   });
 });
