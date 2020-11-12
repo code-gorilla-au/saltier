@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles",
+    "test:coverage": "jest --forceExit --detectOpenHandles --coverage",
     "build": "babel src -d dist"
   },
   "repository": {
