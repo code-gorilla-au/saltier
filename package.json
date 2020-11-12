@@ -2,7 +2,12 @@
   "name": "saltier",
   "version": "1.0.0",
   "description": "small collection of utility functions",
+  "type": "module",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=13.0.0"
+  },
+  "engineStrict": true,
   "scripts": {
     "clean": "rm -rf coverage",
     "pretest": "npm run clean",
