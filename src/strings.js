@@ -85,10 +85,18 @@ function maskString(secret, maskLength = 0) {
   return exposed + masked;
 }
 
+/**
+ * mask half of the secret
+ * @param {string} secret secret to be masked
+ */
 export function maskHalf(secret) {
   return maskString(secret, (secret.length / 2));
 }
 
+/**
+ * mask secret completly
+ * @param {string} secret secret to be masked
+ */
 export function maskSecret(secret) {
   return maskString(secret, secret.length);
 }
