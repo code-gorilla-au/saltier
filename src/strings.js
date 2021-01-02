@@ -61,9 +61,34 @@ export function toTitleCase(value) {
  * @param {string} text - string to truncate
  * @param {number} maxLength - max length of string before truncating
  */
-export function truncateText(text, maxLength = 150) {
+export function truncate(text, maxLength = 150) {
   if (text.length <= maxLength) {
     return text;
   }
   return `${text.substring(0, maxLength)} ...`;
+}
+
+/**
+ * mask a secret
+ * @param {string} secret secret to be masked
+ * @param {number} maskLength how much of the secret should be masked
+ */
+function maskString(secret, maskLength = 0) {
+  if (maskLength <= 0) {
+    return secret;
+  }
+  if (maskLength >= secret.length) {
+    return '*'.repeat(secret.length);
+  }
+  const exposed = secret.substring(0, maskLength);
+  const masked = '*'.repeat((secret.length - exposed.length));
+  return exposed + masked;
+}
+
+export function maskHalf(secret) {
+  return maskString(secret, (secret.length / 2));
+}
+
+export function maskSecret(secret) {
+  return maskString(secret, secret.length);
 }

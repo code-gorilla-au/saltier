@@ -3,7 +3,9 @@ import {
   addPrefix,
   toTitleCase,
   capitalise,
-  truncateText,
+  truncate,
+  maskHalf,
+  maskSecret,
 } from '../src/strings';
 
 describe('Strings', () => {
@@ -88,14 +90,40 @@ describe('capitalise()', () => {
 describe('truncateText()', () => {
   it('should return truncated text', () => {
     const text = 'hello world';
-    expect(truncateText(text, 5)).toEqual('hello ...');
+    expect(truncate(text, 5)).toEqual('hello ...');
   });
   it('should return all text', () => {
     const text = 'hello world';
-    expect(truncateText(text, 50)).toEqual('hello world');
+    expect(truncate(text, 50)).toEqual('hello world');
   });
   it('should return all text', () => {
     const text = 'hello world';
-    expect(truncateText(text)).toEqual('hello world');
+    expect(truncate(text)).toEqual('hello world');
+  });
+});
+
+describe('maskHalf()', () => {
+  it('should return sl**', () => {
+    const text = 'slap';
+    expect(maskHalf(text)).toEqual('sl**');
+  });
+  it('should return fel***', () => {
+    const text = 'fellow';
+    expect(maskHalf(text)).toEqual('fel***');
+  });
+  it('should return bl***', () => {
+    const text = 'blind';
+    expect(maskHalf(text)).toEqual('bl***');
+  });
+});
+
+describe('maskSecret()', () => {
+  it('should mask foo', () => {
+    const text = 'foo';
+    expect(maskSecret(text)).toEqual('***');
+  });
+  it('should mask follow', () => {
+    const text = 'follow';
+    expect(maskSecret(text)).toEqual('******');
   });
 });
