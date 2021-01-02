@@ -8,28 +8,26 @@ import {
   maskSecret,
 } from '../src/strings';
 
-describe('Strings', () => {
-  describe('stripPrefix()', () => {
-    it('should trim a phone', () => {
-      const test = '+811234';
-      expect(stripPrefix(test, '+81')).toEqual('1234');
-    });
-    it('should trim a string', () => {
-      const test = 'foo4403';
-      expect(stripPrefix(test, 'foo')).toEqual('4403');
-    });
-    it('should trim a string and space', () => {
-      const test = 'foo 4403';
-      expect(stripPrefix(test, 'foo ')).toEqual('4403');
-    });
-    it('should trim a string and space', () => {
-      const test = 'foobarbin';
-      expect(stripPrefix(test, 'foo', 'bar')).toEqual('bin');
-    });
-    it('should not trim', () => {
-      const test = 'foobarbin';
-      expect(stripPrefix(test, ['slash'])).toEqual(test);
-    });
+describe('stripPrefix()', () => {
+  it('should trim a phone', () => {
+    const test = '+811234';
+    expect(stripPrefix(test, '+81')).toEqual('1234');
+  });
+  it('should trim a string', () => {
+    const test = 'foo4403';
+    expect(stripPrefix(test, 'foo')).toEqual('4403');
+  });
+  it('should trim a string and space', () => {
+    const test = 'foo 4403';
+    expect(stripPrefix(test, 'foo ')).toEqual('4403');
+  });
+  it('should trim a string and space', () => {
+    const test = 'foobarbin';
+    expect(stripPrefix(test, 'foo', 'bar')).toEqual('bin');
+  });
+  it('should not trim', () => {
+    const test = 'foobarbin';
+    expect(stripPrefix(test, ['slash'])).toEqual(test);
   });
 });
 
