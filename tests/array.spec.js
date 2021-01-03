@@ -42,3 +42,37 @@ describe('tail', () => {
     expect(test).toEqual(['two', 'three', 'four']);
   });
 });
+
+describe('chunk()', () => {
+  it('should return chunk 2 items', () => {
+    const test = arrays.chunk(2, [1, 2, 3, 4]);
+    expect(test).toEqual([[1, 2], [3, 4]]);
+  });
+  it('should return chunk 3 items', () => {
+    const test = arrays.chunk(3, [1, 2, 3, 4]);
+    expect(test).toEqual([[1, 2, 3], [4]]);
+  });
+  it('should return chunk of 4 items', () => {
+    const test = arrays.chunk(4, [1, 2, 3, 4]);
+    expect(test).toEqual([[1, 2, 3, 4]]);
+  });
+  it('should return whole list', () => {
+    const test = arrays.chunk(5, [1, 2, 3, 4]);
+    expect(test).toEqual([[1, 2, 3, 4]]);
+  });
+});
+
+describe('union()', () => {
+  it('should return 1,2', () => {
+    const test = arrays.union([1], [2]);
+    expect(test).toEqual([1, 2]);
+  });
+  it('should join 1,2,3', () => {
+    const test = arrays.union([1, 2, 3], [2, 3]);
+    expect(test).toEqual([1, 2, 3]);
+  });
+  it('should join 1,2,3,[4]', () => {
+    const test = arrays.union([1, 2, 3], [2, 3, [4]]);
+    expect(test).toEqual([1, 2, 3, [4]]);
+  });
+});

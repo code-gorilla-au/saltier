@@ -22,3 +22,37 @@ export function unique(list = []) {
   });
   return result;
 }
+
+/**
+ * Creates an array of unique values, in order, from all given arrays using
+ * @param  {...Array<any>} lists arrays to be merged
+ * @returns {Array<any>}
+ */
+export function union(...lists) {
+  let merged = [];
+  lists.forEach((list) => {
+    if (!Array.isArray(list)) {
+      throw Error('Item is not an array');
+    }
+    merged = [...merged, ...list];
+  });
+  const result = unique(merged);
+  return result;
+}
+
+/**
+ * slice up an array into chunks
+ * @param {number} chunkSize number of elements per array
+ * @param {Array<any>} list array to be chunked
+ */
+export function chunk(chunkSize, list) {
+  if (chunkSize >= list) {
+    return list;
+  }
+  const tmpList = [...list];
+  let result = [];
+  while (tmpList.length > 0) {
+    result = [...result, tmpList.splice(0, chunkSize)];
+  }
+  return result;
+}
