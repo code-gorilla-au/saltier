@@ -49,8 +49,8 @@ export function chunk(chunkSize, list) {
   if (chunkSize >= list) {
     return list;
   }
-  const tmpList = [...list];
   let result = [];
+  const tmpList = [...list];
   while (tmpList.length > 0) {
     result = [...result, tmpList.splice(0, chunkSize)];
   }
