@@ -1,11 +1,16 @@
+function dateYesterday() {
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  return date;
+}
+
 /**
  * Checks if date is in the past
  * @param {String} value - Date string
  */
 export function isPassedDate(value = '') {
   const date = new Date(value);
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterday = dateYesterday();
   function dayOfMonth() {
     if (date.getMonth() === yesterday.getMonth()) {
       return date.getDate() <= yesterday.getDate();
