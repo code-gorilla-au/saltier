@@ -18,9 +18,14 @@ export function isPassedDate(value = '') {
     return true;
   }
 
+  if (date.getFullYear() === yesterday.getFullYear()) {
+    return (
+      dayOfMonth() &&
+      date.getMonth() <= yesterday.getMonth()
+    );
+  }
+
   return (
-    dayOfMonth() &&
-    date.getMonth() <= yesterday.getMonth() &&
     date.getFullYear() <= yesterday.getFullYear()
   );
 }
