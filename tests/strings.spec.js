@@ -5,7 +5,7 @@ import {
   capitalise,
   truncate,
   maskHalf,
-  maskSecret,
+  mask,
 } from '../src/strings';
 
 describe('stripPrefix()', () => {
@@ -115,13 +115,21 @@ describe('maskHalf()', () => {
   });
 });
 
-describe('maskSecret()', () => {
-  it('should mask foo', () => {
-    const text = 'foo';
-    expect(maskSecret(text)).toEqual('***');
+describe('maskString()', () => {
+  it('should mask foo if mask length is negative', () => {
+    const test = 'foo';
+    expect(mask(test, -1)).toEqual('***');
   });
-  it('should mask follow', () => {
-    const text = 'follow';
-    expect(maskSecret(text)).toEqual('******');
+  it('should mask foo if mask length is 0', () => {
+    const test = 'foo';
+    expect(mask(test, 0)).toEqual('***');
+  });
+  it('should return fo*', () => {
+    const test = 'foo';
+    expect(mask(test, 1)).toEqual('fo*');
+  });
+  it('should mask foo if mask length is omited', () => {
+    const test = 'foo';
+    expect(mask(test)).toEqual('***');
   });
 });

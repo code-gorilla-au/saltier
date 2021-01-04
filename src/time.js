@@ -1,4 +1,35 @@
-function dateYesterday() {
+const milisecondsPerDay = 86400000;
+
+/**
+ * returns date converted to UTC
+ * @param {Date} date date object
+ */
+export function dateToUTC(date) {
+  const minutes = date.getMinutes() - date.getTimezoneOffset();
+  const newDate = new Date(date);
+  newDate.setMinutes(minutes);
+  return newDate;
+}
+
+/**
+ * returns the number of days between two dates
+ * @param {Date} startDate date object
+ * @param {Date} endDate date object
+ */
+export function daysBetween(startDate, endDate) {
+  return Math.trunc((dateToUTC(endDate) - dateToUTC(startDate)) / milisecondsPerDay);
+}
+
+/**
+ * returns the number of days since the given date
+ * @param {Date} date date object
+ */
+export function daysSinceDate(date = new Date()) {
+  const today = dateToUTC(new Date());
+  return daysBetween(date, today);
+}
+
+export function dateYesterday() {
   const date = new Date();
   date.setDate(date.getDate() - 1);
   return date;
@@ -8,7 +39,7 @@ function dateYesterday() {
  * Checks if date is in the past
  * @param {String} value - Date string
  */
-export function isPassedDate(value = '') {
+export function isDateInPast(value) {
   const date = new Date(value);
   const yesterday = dateYesterday();
   function dayOfMonth() {
@@ -28,8 +59,4 @@ export function isPassedDate(value = '') {
   return (
     date.getFullYear() <= yesterday.getFullYear()
   );
-}
-
-export function foo() {
-  throw Error('not implemented');
 }

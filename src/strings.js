@@ -73,14 +73,11 @@ export function truncate(text, maxLength = 150) {
  * @param {string} secret secret to be masked
  * @param {number} maskLength how much of the secret should be masked
  */
-function maskString(secret, maskLength = 0) {
-  if (maskLength <= 0) {
-    return secret;
-  }
-  if (maskLength >= secret.length) {
+export function mask(secret, maskLength = 0) {
+  if (maskLength >= secret.length || maskLength <= 0) {
     return '*'.repeat(secret.length);
   }
-  const exposed = secret.substring(0, maskLength);
+  const exposed = secret.substring(0, (secret.length - maskLength));
   const masked = '*'.repeat((secret.length - exposed.length));
   return exposed + masked;
 }
@@ -90,13 +87,5 @@ function maskString(secret, maskLength = 0) {
  * @param {string} secret secret to be masked
  */
 export function maskHalf(secret) {
-  return maskString(secret, (secret.length / 2));
-}
-
-/**
- * mask secret completly
- * @param {string} secret secret to be masked
- */
-export function maskSecret(secret) {
-  return maskString(secret, secret.length);
+  return mask(secret, (secret.length / 2));
 }
