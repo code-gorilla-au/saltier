@@ -77,9 +77,9 @@ export function mask(secret, maskLength = 0) {
   if (maskLength >= secret.length || maskLength <= 0) {
     return '*'.repeat(secret.length);
   }
-  const exposed = secret.substring(0, (secret.length - maskLength));
+  const exposed = secret.substring(maskLength, secret.length);
   const masked = '*'.repeat((secret.length - exposed.length));
-  return exposed + masked;
+  return masked + exposed;
 }
 
 /**

@@ -101,21 +101,21 @@ describe('truncateText()', () => {
 });
 
 describe('maskHalf()', () => {
-  it('should return sl**', () => {
+  it('should return **ap', () => {
     const text = 'slap';
-    expect(maskHalf(text)).toEqual('sl**');
+    expect(maskHalf(text)).toEqual('**ap');
   });
-  it('should return fel***', () => {
+  it('should return ***low', () => {
     const text = 'fellow';
-    expect(maskHalf(text)).toEqual('fel***');
+    expect(maskHalf(text)).toEqual('***low');
   });
   it('should return bl***', () => {
     const text = 'blind';
-    expect(maskHalf(text)).toEqual('bl***');
+    expect(maskHalf(text)).toEqual('**ind');
   });
 });
 
-describe('maskString()', () => {
+describe('mask()', () => {
   it('should mask foo if mask length is negative', () => {
     const test = 'foo';
     expect(mask(test, -1)).toEqual('***');
@@ -126,7 +126,7 @@ describe('maskString()', () => {
   });
   it('should return fo*', () => {
     const test = 'foo';
-    expect(mask(test, 1)).toEqual('fo*');
+    expect(mask(test, 1)).toEqual('*oo');
   });
   it('should mask foo if mask length is omited', () => {
     const test = 'foo';
