@@ -102,3 +102,27 @@ describe('debounce', () => {
     expect(slap.bar).toEqual(6);
   });
 });
+
+describe('trampoline()', () => {
+  it('should return 1', () => {
+    const test = fns.trampoline((val) => val);
+    expect(test(1)).toEqual(1);
+  });
+  it('should return 10', () => {
+    const test = fns.trampoline((val) => val * 2);
+    expect(test(5)).toEqual(10);
+  });
+  it('call stack should not exceed', () => {
+    function recursiveFn(n) {
+      if (n < 0) {
+        return true;
+      }
+      return function f() {
+        return recursiveFn(n - 1);
+      };
+    }
+    const recuse = fns.trampoline(recursiveFn);
+    const test = recuse(100000);
+    expect(test).toEqual(false);
+  });
+});

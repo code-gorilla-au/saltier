@@ -59,3 +59,19 @@ export function debounce(fn, waitMs) {
   }
   return debounced;
 }
+
+/**
+ * trampoline a recusive function for a safe recusion
+ * https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
+ * @param {Function} fn function to trampoline
+ * @returns {Function} function being trampolined
+ */
+export function trampoline(fn) {
+  return function trampolined(...args) {
+    let result = fn(...args);
+    while (typeof result === 'function') {
+      result = result();
+    }
+    return result;
+  };
+}
