@@ -73,8 +73,9 @@ describe('debounce', () => {
     let foo = 0;
     const bar = fns.debounce((value) => {
       foo += value;
-    }, 100);
+    }, 110);
     bar(6);
+    bar(1);
     expect(foo).toEqual(6);
   });
   it('should be able to return a value', async () => {
@@ -84,7 +85,7 @@ describe('debounce', () => {
       return foo;
     }, 100);
     const baz = bar(6);
-    expect(baz).toEqual(7);
+    expect(baz).toEqual(foo);
   });
   it('should keep this context', async () => {
     const slap = {
