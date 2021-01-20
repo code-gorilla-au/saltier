@@ -32,7 +32,7 @@ export function union(...lists) {
   let merged = [];
   lists.forEach((list) => {
     if (!Array.isArray(list)) {
-      throw Error('Item is not an array');
+      throw Error('list is not an array');
     }
     merged = [...merged, ...list];
   });

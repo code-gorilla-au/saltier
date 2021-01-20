@@ -84,6 +84,14 @@ describe('toSnakeCase()', () => {
     const test = toSnakeCase('hello-world');
     expect(test).toEqual('hello_world');
   });
+  it('should return hello_world from snake', () => {
+    const test = toSnakeCase('hello_world');
+    expect(test).toEqual('hello_world');
+  });
+  it('should return hello_world from mixed cases', () => {
+    const test = toSnakeCase('Hello_World');
+    expect(test).toEqual('hello_world');
+  });
 });
 
 describe('capitalise()', () => {
@@ -97,7 +105,7 @@ describe('capitalise()', () => {
     expect(capitalise('fortran')).toEqual('Fortran');
   });
   it('Should return sentence capitalised', () => {
-    expect(capitalise('forTran')).toEqual('Fortran');
+    expect(capitalise('forTran')).toEqual('ForTran');
   });
 });
 

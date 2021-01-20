@@ -34,7 +34,6 @@ export function addPrefix(value = '', prefixValue = '') {
  */
 export function capitalise(value) {
   return value
-    .toLowerCase()
     .split(' ')
     .map((blob) => blob.charAt(0).toUpperCase() + blob.substring(1))
     .join(' ');
@@ -50,6 +49,10 @@ function splitValues(value) {
   return result.replace(/([a-z])([A-Z])/g, '$1 $2');
 }
 
+/**
+ * Takes in Pascal, kebab, camel, snake case and converts to snake_case
+ * @param {*} value
+ */
 export function toSnakeCase(value) {
   let result = splitValues(value);
   const symbolMatch = RegExp('[-_ ]', 'g');
@@ -60,18 +63,16 @@ export function toSnakeCase(value) {
 }
 
 /**
- * Takes in Pascal, kebab, camel case and converts to title case
+ * Takes in Pascal, kebab, camel, snake case and converts to Title ase
  * @param {String} value - pascal, snake, camel case
  */
 export function toTitleCase(value) {
   let result = splitValues(value);
-  result = result.charAt(0).toUpperCase() + result.substring(1);
   const symbolMatch = RegExp('[-_]', 'g');
   if (result.match(symbolMatch)) {
     result = result.replace(symbolMatch, ' ');
-    result = capitalise(result);
   }
-  return result;
+  return capitalise(result);
 }
 
 /**
