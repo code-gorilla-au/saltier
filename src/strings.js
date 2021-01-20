@@ -1,19 +1,4 @@
 /**
- * Strips a string's prefix if present
- * @param {string} value string to be stripped
- * @param {Array<string>} prefixes a list of prefix's to strip
- */
-export function stripPrefix(value, ...prefixes) {
-  let strippedValue = value;
-  prefixes.forEach((p) => {
-    if (strippedValue.startsWith(p)) {
-      strippedValue = strippedValue.replace(p, '');
-    }
-  });
-  return strippedValue;
-}
-
-/**
  * adds a prefix to a string if it doesn't exist already
  * @param {string} value string to have the prefix added
  * @param {string} prefixValue expected prefix
@@ -26,6 +11,21 @@ export function addPrefix(value = '', prefixValue = '') {
     return value;
   }
   return `${prefixValue}${value}`;
+}
+
+/**
+ * Strips a string's prefix if present
+ * @param {string} value string to be stripped
+ * @param {Array<string>} prefixes a list of prefix's to strip
+ */
+export function stripPrefix(value, ...prefixes) {
+  let strippedValue = value;
+  prefixes.forEach((p) => {
+    if (strippedValue.startsWith(p)) {
+      strippedValue = strippedValue.replace(p, '');
+    }
+  });
+  return strippedValue;
 }
 
 /**

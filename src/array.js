@@ -1,4 +1,21 @@
 /**
+ * slice up an array into chunks
+ * @param {number} chunkSize number of elements per array
+ * @param {Array<any>} list array to be chunked
+ */
+export function chunk(chunkSize, list) {
+  if (chunkSize >= list) {
+    return list;
+  }
+  let result = [];
+  const tmpList = [...list];
+  while (tmpList.length > 0) {
+    result = [...result, tmpList.splice(0, chunkSize)];
+  }
+  return result;
+}
+
+/**
  * return the tail of an array
  * @param {Array<any>} list array
  */
@@ -37,22 +54,5 @@ export function union(...lists) {
     merged = [...merged, ...list];
   });
   const result = unique(merged);
-  return result;
-}
-
-/**
- * slice up an array into chunks
- * @param {number} chunkSize number of elements per array
- * @param {Array<any>} list array to be chunked
- */
-export function chunk(chunkSize, list) {
-  if (chunkSize >= list) {
-    return list;
-  }
-  let result = [];
-  const tmpList = [...list];
-  while (tmpList.length > 0) {
-    result = [...result, tmpList.splice(0, chunkSize)];
-  }
   return result;
 }

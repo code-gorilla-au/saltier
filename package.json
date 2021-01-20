@@ -12,7 +12,7 @@
     "pretest": "npm run clean",
     "test": "jest --forceExit --detectOpenHandles",
     "test:coverage": "jest --forceExit --detectOpenHandles --coverage",
-    "generate": "jsdoc2md src/*.js > docs/api.md",
+    "generate": "jsdoc2md --plugin @godaddy/dmd --files src/*.js > docs/api.md",
     "postgenerate": "npx hawkeye scan"
   },
   "repository": {
