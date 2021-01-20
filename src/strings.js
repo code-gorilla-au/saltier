@@ -42,6 +42,7 @@ export function capitalise(value) {
 /**
  * split string to have spaces based on two conditions
  * split via capitol letters
+ * @private
  * @param {string} value
  * @return {string}
  */

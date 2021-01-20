@@ -2,6 +2,9 @@
  * slice up an array into chunks
  * @param {number} chunkSize number of elements per array
  * @param {Array<any>} list array to be chunked
+ * @example
+ * // returns [[1,2],[3,4]]
+ * chunk([1,2,3,4], 2)
  */
 export function chunk(chunkSize, list) {
   if (chunkSize >= list) {
