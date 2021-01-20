@@ -40,7 +40,8 @@ export function capitalise(value) {
 }
 
 /**
- * split sting to have spaces
+ * split string to have spaces based on two conditions
+ * split via capitol letters
  * @param {string} value
  * @return {string}
  */
