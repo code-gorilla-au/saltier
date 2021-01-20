@@ -17,7 +17,7 @@ npm install https://github.com/code-gorilla-au/saltier.git
 Name | Description
 ------ | -----------
 [chunk(chunkSize, list)] | Creates a new nested array with array elements chunked
-[tail(list)] | return the tail of an array
+[tail(list)] | returns the tail of an array in a brand new array
 [unique(list)] | return unique elements from an array
 [union(...lists)] | Creates an array of unique values, in order, from all given arrays using
 [composeTwo(fn1, fn2)] | Compose two function
@@ -64,7 +64,7 @@ chunk([1,2,3,4], 2)
 
 ## tail(list)
 
-return the tail of an array
+returns the tail of an array in a brand new array
 
 **Kind**: global function  
 
