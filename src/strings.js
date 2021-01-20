@@ -41,12 +41,30 @@ export function capitalise(value) {
 }
 
 /**
+ * split sting to have spaces
+ * @param {string} value
+ * @return {string}
+ */
+function splitValues(value) {
+  const result = value.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
+  return result.replace(/([a-z])([A-Z])/g, '$1 $2');
+}
+
+export function toSnakeCase(value) {
+  let result = splitValues(value);
+  const symbolMatch = RegExp('[-_ ]', 'g');
+  if (result.match(symbolMatch)) {
+    result = result.replace(symbolMatch, '_');
+  }
+  return result.toLowerCase();
+}
+
+/**
  * Takes in Pascal, kebab, camel case and converts to title case
- * @param {String} value - pascal, pnake, pamel case
+ * @param {String} value - pascal, snake, camel case
  */
 export function toTitleCase(value) {
-  let result = value.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
-  result = result.replace(/([a-z])([A-Z])/g, '$1 $2');
+  let result = splitValues(value);
   result = result.charAt(0).toUpperCase() + result.substring(1);
   const symbolMatch = RegExp('[-_]', 'g');
   if (result.match(symbolMatch)) {

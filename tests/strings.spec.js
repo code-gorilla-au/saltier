@@ -2,6 +2,7 @@ import {
   stripPrefix,
   addPrefix,
   toTitleCase,
+  toSnakeCase,
   capitalise,
   truncate,
   maskHalf,
@@ -67,6 +68,21 @@ describe('toTitleCase()', () => {
   });
   it('Should return title case: Camel Case', () => {
     expect(toTitleCase('camelCase')).toEqual('Camel Case');
+  });
+});
+
+describe('toSnakeCase()', () => {
+  it('should return hello_world from camel case', () => {
+    const test = toSnakeCase('helloWorld');
+    expect(test).toEqual('hello_world');
+  });
+  it('should return hello_world from pascal', () => {
+    const test = toSnakeCase('HelloWorld');
+    expect(test).toEqual('hello_world');
+  });
+  it('should return hello_world from kebab', () => {
+    const test = toSnakeCase('hello-world');
+    expect(test).toEqual('hello_world');
   });
 });
 
