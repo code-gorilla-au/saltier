@@ -1,5 +1,5 @@
 /**
- * slice up an array into chunks
+ * Creates a new nested array with array elements chunked
  * @param {number} chunkSize number of elements per array
  * @param {Array<any>} list array to be chunked
  * @example
@@ -19,7 +19,7 @@ export function chunk(chunkSize, list) {
 }
 
 /**
- * return the tail of an array
+ * returns the tail of an array in a brand new array
  * @param {Array<any>} list array
  */
 export function tail(list = []) {

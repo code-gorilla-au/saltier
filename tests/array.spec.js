@@ -31,6 +31,7 @@ describe('tail', () => {
     const list = [1, 2, 3, 4];
     const test = arrays.tail(list);
     expect(test).toEqual([2, 3, 4]);
+    expect(list).toEqual([1, 2, 3, 4]);
   });
   it('should return empty list', () => {
     const test = arrays.tail();
@@ -40,6 +41,7 @@ describe('tail', () => {
     const list = ['one', 'two', 'three', 'four'];
     const test = arrays.tail(list);
     expect(test).toEqual(['two', 'three', 'four']);
+    expect(list).toEqual(['one', 'two', 'three', 'four']);
   });
 });
 

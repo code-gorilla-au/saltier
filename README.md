@@ -16,7 +16,7 @@ npm install https://github.com/code-gorilla-au/saltier.git
 
 Name | Description
 ------ | -----------
-[chunk(chunkSize, list)] | slice up an array into chunks
+[chunk(chunkSize, list)] | Creates a new nested array with array elements chunked
 [tail(list)] | return the tail of an array
 [unique(list)] | return unique elements from an array
 [union(...lists)] | Creates an array of unique values, in order, from all given arrays using
@@ -47,7 +47,7 @@ Name | Description
 
 ## chunk(chunkSize, list)
 
-slice up an array into chunks
+Creates a new nested array with array elements chunked
 
 **Kind**: global function  
 

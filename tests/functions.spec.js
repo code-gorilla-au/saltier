@@ -123,6 +123,6 @@ describe('trampoline()', () => {
     }
     const recuse = fns.trampoline(recursiveFn);
     const test = recuse(100000);
-    expect(test).toEqual(false);
+    expect(test).toEqual(true);
   });
 });
