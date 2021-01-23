@@ -21,6 +21,9 @@ export function chunk(chunkSize, list) {
 /**
  * returns the tail of an array in a brand new array
  * @param {Array<any>} list array
+ * @example
+ * // returns [2,3,4]
+ * tail([1,2,3,4])
  */
 export function tail(list = []) {
   return list.slice(1);
@@ -29,6 +32,9 @@ export function tail(list = []) {
 /**
  * return unique elements from an array
  * @param {Array<any>} list array
+ * @example
+ * // returns [1,2,3,4]
+ * unique([1,1,1,2,3,3,3,4,4,4])
  */
 export function unique(list = []) {
   const cache = {};
@@ -47,6 +53,9 @@ export function unique(list = []) {
  * Creates an array of unique values, in order, from all given arrays using
  * @param  {...Array<any>} lists arrays to be merged
  * @returns {Array<any>}
+ * @example
+ * // returns [1,2,3,4]
+ * union([1,2],[3,4])
  */
 export function union(...lists) {
   let merged = [];

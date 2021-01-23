@@ -72,6 +72,11 @@ returns the tail of an array in a brand new array
 | --- | --- | --- |
 | list | `Array.<any>` | array |
 
+**Example**  
+```js
+// returns [2,3,4]
+tail([1,2,3,4])
+```
 
 ## unique(list)
 
@@ -83,6 +88,11 @@ return unique elements from an array
 | --- | --- | --- |
 | list | `Array.<any>` | array |
 
+**Example**  
+```js
+// returns [1,2,3,4]
+unique([1,1,1,2,3,3,3,4,4,4])
+```
 
 ## union(...lists)
 
@@ -94,6 +104,11 @@ Creates an array of unique values, in order, from all given arrays using
 | --- | --- | --- |
 | ...lists | `Array.<any>` | arrays to be merged |
 
+**Example**  
+```js
+// returns [1,2,3,4]
+union([1,2],[3,4])
+```
 
 ## composeTwo(fn1, fn2)
 
@@ -168,6 +183,11 @@ adds a prefix to a string if it doesn't exist already
 | value | `string` | string to have the prefix added |
 | prefixValue | `string` | expected prefix |
 
+**Example**  
+```js
+// returns flashsuper
+addPrefix(super, flash)
+```
 
 ## stripPrefix(value, prefixes)
 
@@ -180,6 +200,11 @@ Strips a string's prefix if present
 | value | `string` | string to be stripped |
 | prefixes | `Array.<string>` | a list of prefix's to strip |
 
+**Example**  
+```js
+// returns super
+stripPrefix(superflash, super)
+```
 
 ## capitalise(value)
 
@@ -191,6 +216,11 @@ capitalise every word in a given sentence
 | --- | --- | --- |
 | value | `String` | sentence |
 
+**Example**  
+```js
+// returns Hello World
+capitalise(hello world)
+```
 
 ## toSnakeCase(value)
 
@@ -200,8 +230,13 @@ Takes in Pascal, kebab, camel, snake case and converts to snake_case
 
 | Param | Type |
 | --- | --- |
-| value | `*` | 
+| value | `string` | 
 
+**Example**  
+```js
+// returns hello_world
+toSnakeCase(helloWorld)
+```
 
 ## toTitleCase(value)
 

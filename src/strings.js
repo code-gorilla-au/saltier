@@ -2,6 +2,9 @@
  * adds a prefix to a string if it doesn't exist already
  * @param {string} value string to have the prefix added
  * @param {string} prefixValue expected prefix
+ * @example
+ * // returns flashsuper
+ * addPrefix(super, flash)
  */
 export function addPrefix(value = '', prefixValue = '') {
   if (value === '' || prefixValue === '') {
@@ -17,6 +20,9 @@ export function addPrefix(value = '', prefixValue = '') {
  * Strips a string's prefix if present
  * @param {string} value string to be stripped
  * @param {Array<string>} prefixes a list of prefix's to strip
+ * @example
+ * // returns super
+ * stripPrefix(superflash, super)
  */
 export function stripPrefix(value, ...prefixes) {
   let strippedValue = value;
@@ -31,6 +37,9 @@ export function stripPrefix(value, ...prefixes) {
 /**
  * capitalise every word in a given sentence
  * @param {String} value sentence
+ * @example
+ * // returns Hello World
+ * capitalise(hello world)
  */
 export function capitalise(value) {
   return value
@@ -53,7 +62,10 @@ function splitValues(value) {
 
 /**
  * Takes in Pascal, kebab, camel, snake case and converts to snake_case
- * @param {*} value
+ * @param {string} value
+ * @example
+ * // returns hello_world
+ * toSnakeCase(helloWorld)
  */
 export function toSnakeCase(value) {
   let result = splitValues(value);
