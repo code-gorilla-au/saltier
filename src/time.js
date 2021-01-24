@@ -1,3 +1,7 @@
+/**
+ * Miliseconds per day
+ * @private
+ */
 const milisecondsPerDay = 86400000;
 
 /**

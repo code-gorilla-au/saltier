@@ -54,6 +54,9 @@ export function capitalise(value) {
  * @private
  * @param {string} value
  * @return {string}
+ * @example
+ * // returns Hello World
+ * splitValues(helloWorld)
  */
 function splitValues(value) {
   const result = value.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
@@ -79,6 +82,9 @@ export function toSnakeCase(value) {
 /**
  * Takes in Pascal, kebab, camel, snake case and converts to Title ase
  * @param {String} value - pascal, snake, camel case
+ * @example
+ * // returns Hello World
+ * toTitleCase(hello_world)
  */
 export function toTitleCase(value) {
   let result = splitValues(value);
@@ -93,6 +99,9 @@ export function toTitleCase(value) {
  * truncates text if it's length is greater than to equal to max length
  * @param {string} text - string to truncate
  * @param {number} maxLength - max length of string before truncating
+ * @example
+ * //returns hello ...
+ * truncate('hello world', 5)
  */
 export function truncate(text, maxLength = 150) {
   if (text.length <= maxLength) {
@@ -105,6 +114,9 @@ export function truncate(text, maxLength = 150) {
  * mask a secret
  * @param {string} secret secret to be masked
  * @param {number} maskLength how much of the secret should be masked
+ * @example
+ * // returns snap***
+ * mask(snapFoo, 3)
  */
 export function mask(secret, maskLength = 0) {
   if (maskLength >= secret.length || maskLength <= 0) {
@@ -118,6 +130,9 @@ export function mask(secret, maskLength = 0) {
 /**
  * mask half of the secret
  * @param {string} secret secret to be masked
+ * @example
+ * // returns Foo***
+ * maskHalf(FooBar)
  */
 export function maskHalf(secret) {
   return mask(secret, (secret.length / 2));

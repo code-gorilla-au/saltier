@@ -2,17 +2,17 @@ import * as fns from '../src/functions';
 
 describe('pipe()', () => {
   it('should return 3', () => {
-    const stuff = fns.pipe(
+    const addTwo = fns.pipe(
       (value) => value + 2,
     )(1);
-    expect(stuff).toEqual(3);
+    expect(addTwo).toEqual(3);
   });
   it('should return 3', () => {
-    const stuff = fns.pipe(
+    const mathPipe = fns.pipe(
       (value) => value * 2,
       (value) => value - 3,
     )(3);
-    expect(stuff).toEqual(3);
+    expect(mathPipe).toEqual(3);
   });
 });
 

@@ -19,6 +19,12 @@ export function composeTwo(fn1, fn2) {
  * Performs left-to-right function composition
  * @param  {...composeFunction} fns
  * @returns {composeFunction} compose function
+ * @example
+ * // returns 3
+ * const mathPipe = fns.pipe(
+ *    (value) => value * 2,
+ *    (value) => value - 3,
+ * )(3);
  */
 export function pipe(...fns) {
   return (initValue) => fns.reduce((prevFn, fn) => fn(prevFn), initValue);
@@ -28,6 +34,12 @@ export function pipe(...fns) {
  * Performs right-to-left function composition
  * @param  {...composeFunction} fns
  * @returns {any} result of your compose
+ * @example
+ * // returns 3
+ * const stuff = fns.compose(
+ *    (value) => value - 3,
+ *    (value) => value * 2,
+ * )(3);
  */
 export function compose(...fns) {
   return (initValue) => fns.reduceRight((prevFn, fn) => fn(prevFn), initValue);
@@ -65,6 +77,17 @@ export function debounce(fn, waitMs) {
  * https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
  * @param {Function} fn function to trampoline
  * @returns {Function} function being trampolined
+ * @example
+ * // returns true
+ * function recursiveFn(n) {
+ *   if (n < 0) {
+ *     return true;
+ *   }
+ *   return function f() {
+ *     return recursiveFn(n - 1);
+ *   };
+ * }
+ * trampoline(recursiveFn)
  */
 export function trampoline(fn) {
   return function trampolined(...args) {
