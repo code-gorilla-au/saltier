@@ -134,6 +134,14 @@ Performs left-to-right function composition
 | --- | --- |
 | ...fns | [`composeFunction`] | 
 
+**Example**  
+```js
+// returns 3
+const mathPipe = fns.pipe(
+   (value) => value * 2,
+   (value) => value - 3,
+)(3);
+```
 
 ## compose(...fns)
 
@@ -146,6 +154,14 @@ Performs right-to-left function composition
 | --- | --- |
 | ...fns | [`composeFunction`] | 
 
+**Example**  
+```js
+// returns 3
+const stuff = fns.compose(
+   (value) => value - 3,
+   (value) => value * 2,
+)(3);
+```
 
 ## debounce(fn, waitMs)
 
@@ -171,6 +187,19 @@ https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-db
 | --- | --- | --- |
 | fn | `function` | function to trampoline |
 
+**Example**  
+```js
+// returns true
+function recursiveFn(n) {
+  if (n < 0) {
+    return true;
+  }
+  return function f() {
+    return recursiveFn(n - 1);
+  };
+}
+trampoline(recursiveFn)
+```
 
 ## addPrefix(value, prefixValue)
 
@@ -248,6 +277,11 @@ Takes in Pascal, kebab, camel, snake case and converts to Title ase
 | --- | --- | --- |
 | value | `String` | pascal, snake, camel case |
 
+**Example**  
+```js
+// returns Hello World
+toTitleCase(hello_world)
+```
 
 ## truncate(text, maxLength)
 
@@ -260,6 +294,11 @@ truncates text if it's length is greater than to equal to max length
 | text | `string` | string to truncate |
 | maxLength | `number` | max length of string before truncating |
 
+**Example**  
+```js
+//returns hello ...
+truncate('hello world', 5)
+```
 
 ## mask(secret, maskLength)
 
@@ -272,6 +311,11 @@ mask a secret
 | secret | `string` | secret to be masked |
 | maskLength | `number` | how much of the secret should be masked |
 
+**Example**  
+```js
+// returns snap***
+mask(snapFoo, 3)
+```
 
 ## maskHalf(secret)
 
@@ -283,6 +327,11 @@ mask half of the secret
 | --- | --- | --- |
 | secret | `string` | secret to be masked |
 
+**Example**  
+```js
+// returns Foo***
+maskHalf(FooBar)
+```
 
 ## dateToUTC(date)
 
