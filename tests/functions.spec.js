@@ -49,6 +49,16 @@ describe('composeTwo()', () => {
     expect(stuff(1)).toEqual(3);
   });
   it('should return 3', () => {
+    function add(val) {
+      return (next) => val + next;
+    }
+    const stuff = fns.composeTwo(
+      add(2),
+      add(3),
+    );
+    expect(stuff(5)).toEqual(10);
+  });
+  it('should return 12', () => {
     const stuff = fns.composeTwo(
       (value) => value - 3,
       (value) => value * 2,

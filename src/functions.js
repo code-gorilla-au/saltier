@@ -10,6 +10,10 @@
  * @param {composeFunction} fn1
  * @param {composeFunction} fn2
  * @returns {composeFunction} compose function
+ * @example
+ * // returns 10
+ * const sum = composeTwo(add(2), add(3))
+ * sum(5)
  */
 export function composeTwo(fn1, fn2) {
   return (value) => fn1(fn2(value));
