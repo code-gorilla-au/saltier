@@ -122,6 +122,12 @@ Compose two function
 | fn1 | [`composeFunction`] | 
 | fn2 | [`composeFunction`] | 
 
+**Example**  
+```js
+// returns 10
+const sum = composeTwo(add(2), add(3))
+sum(5)
+```
 
 ## pipe(...fns)
 
@@ -174,6 +180,18 @@ Creates a throttled function that only invokes func at most once per every wait 
 | fn | [`composeFunction`] | function to be invoked |
 | waitMs | `Number` | wait milliseconds |
 
+**Example**  
+```js
+// foo should be 2
+let foo = 0;
+const bar = fns.debounce(() => {
+   foo += 1;
+}, 100);
+bar();
+bar();
+await new Promise((r) => setTimeout(r, 110));
+bar();
+```
 
 ## trampoline(fn)
 
