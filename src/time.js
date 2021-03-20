@@ -1,8 +1,8 @@
 /**
- * Miliseconds per day
+ * Milliseconds per day
  * @private
  */
-const milisecondsPerDay = 86400000;
+const millisecondsPerDay = 86400000;
 
 /**
  * returns date converted to UTC
@@ -21,7 +21,7 @@ export function dateToUTC(date) {
  * @param {Date} endDate date object
  */
 export function daysBetween(startDate, endDate) {
-  return Math.trunc((dateToUTC(endDate) - dateToUTC(startDate)) / milisecondsPerDay);
+  return Math.trunc((dateToUTC(endDate) - dateToUTC(startDate)) / millisecondsPerDay);
 }
 
 /**
