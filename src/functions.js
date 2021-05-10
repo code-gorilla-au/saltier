@@ -87,7 +87,7 @@ export function debounce(fn, waitMs) {
 }
 
 /**
- * trampoline a recusive function for a safe recusion
+ * trampoline a recursive function for a safe recursion
  * https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
  * @param {Function} fn function to trampoline
  * @returns {Function} function being trampolined
