@@ -2,5 +2,5 @@
     "all": true,
     "failOn": "high",
     "showCode": true,
-    "modules": ["files-ccnumber", "files-contents", "files-entropy", "files-secrets", "node-npmaudit", "node-npmoutdated"]
+    "modules": ["files-ccnumber", "files-contents", "files-entropy", "files-secrets", "node-npmaudit"]
 }
