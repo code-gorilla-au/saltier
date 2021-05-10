@@ -31,6 +31,11 @@ describe('isPassedDate()', () => {
     testDate.setDate(newDate);
     expect(isDateInPast(testDate)).toBeFalsy();
   });
+  it('next year should return false', () => {
+    const testDate = new Date();
+    const newDate = testDate.setFullYear(testDate.getFullYear() + 1);
+    expect(isDateInPast(newDate)).toEqual(false);
+  });
 });
 
 describe('dateToUTC', () => {
