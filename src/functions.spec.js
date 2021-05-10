@@ -1,4 +1,4 @@
-import * as fns from '../src/functions';
+import * as fns from './functions';
 
 describe('pipe()', () => {
   it('should return 3', () => {

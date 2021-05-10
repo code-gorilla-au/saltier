@@ -1,4 +1,4 @@
-import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday } from '../src/time';
+import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday } from './time';
 
 describe('isPassedDate()', () => {
   it('last month should return true', () => {

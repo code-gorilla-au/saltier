@@ -7,7 +7,7 @@ import {
   truncate,
   maskHalf,
   mask,
-} from '../src/strings';
+} from './strings';
 
 describe('stripPrefix()', () => {
   it('should trim a phone', () => {

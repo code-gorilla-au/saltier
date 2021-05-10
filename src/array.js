@@ -7,7 +7,7 @@
  * chunk([1,2,3,4], 2)
  */
 export function chunk(chunkSize, list) {
-  if (chunkSize >= list) {
+  if (chunkSize >= list.length) {
     return list;
   }
   let result = [];

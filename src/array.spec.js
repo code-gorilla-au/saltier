@@ -1,4 +1,4 @@
-import * as arrays from '../src/array';
+import * as arrays from './array';
 
 describe('unique()', () => {
   it('should return a list of numbers', () => {
@@ -56,11 +56,15 @@ describe('chunk()', () => {
   });
   it('should return chunk of 4 items', () => {
     const test = arrays.chunk(4, [1, 2, 3, 4]);
-    expect(test).toEqual([[1, 2, 3, 4]]);
+    expect(test).toEqual([1, 2, 3, 4]);
   });
   it('should return whole list', () => {
     const test = arrays.chunk(5, [1, 2, 3, 4]);
-    expect(test).toEqual([[1, 2, 3, 4]]);
+    expect(test).toEqual([1, 2, 3, 4]);
+  });
+  it('should return original list', () => {
+    const test = arrays.chunk(9, [1, 2, 3]);
+    expect(test).toEqual([1, 2, 3]);
   });
 });
 
@@ -76,5 +80,10 @@ describe('union()', () => {
   it('should join 1,2,3,[4]', () => {
     const test = arrays.union([1, 2, 3], [2, 3, [4]]);
     expect(test).toEqual([1, 2, 3, [4]]);
+  });
+  it('should throw error ', () => {
+    expect(() => {
+      arrays.union({ world: 'hello' });
+    }).toThrowError();
   });
 });
