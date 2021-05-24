@@ -410,6 +410,11 @@ checks if a date is within a specified date range
 | startDate | `Date` | lower bound of date range |
 | endDate | `Date` | upper bound of date range |
 
+**Example**  
+```js
+// returns true
+isBetweenDateRange(today(), yesterday(), tomorrow())
+```
 
 ## composeFunction
 

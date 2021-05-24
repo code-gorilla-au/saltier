@@ -71,6 +71,9 @@ export function isDateInPast(value) {
  * @param {Date} startDate lower bound of date range
  * @param {Date} endDate upper bound of date range
  * @returns {boolean} boolean
+ * @example
+ * // returns true
+ * isBetweenDateRange(today(), yesterday(), tomorrow())
  */
 export function isBetweenDateRange(date, startDate, endDate) {
   const isAfterDate = daysBetween(startDate, date) >= 0;
