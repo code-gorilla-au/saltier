@@ -24,7 +24,7 @@ Name | Description
 [pipe(...fns)] | Performs left-to-right function composition
 [compose(...fns)] | Performs right-to-left function composition
 [debounce(fn, waitMs)] | Creates a throttled function that only invokes func at most once per every wait milliseconds
-[trampoline(fn)] | trampoline a recusive function for a safe recusion https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
+[trampoline(fn)] | trampoline a recursive function for a safe recursion https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
 [addPrefix(value, prefixValue)] | adds a prefix to a string if it doesn't exist already
 [stripPrefix(value, prefixes)] | Strips a string's prefix if present
 [capitalise(value)] | capitalise every word in a given sentence
@@ -37,6 +37,7 @@ Name | Description
 [daysBetween(startDate, endDate)] | returns the number of days between two dates
 [daysSinceDate(date)] | returns the number of days since the given date
 [isDateInPast(value)] | Checks if date is in the past
+[isBetweenDateRange(date, startDate, endDate)] | checks if a date is within a specified date range
 
 ## Typedefs
 
@@ -195,7 +196,7 @@ bar();
 
 ## trampoline(fn)
 
-trampoline a recusive function for a safe recusion
+trampoline a recursive function for a safe recursion
 https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
 
 **Kind**: global function  
@@ -396,6 +397,20 @@ Checks if date is in the past
 | value | `String` | Date string |
 
 
+## isBetweenDateRange(date, startDate, endDate)
+
+checks if a date is within a specified date range
+
+**Kind**: global function  
+**Returns**: `boolean` - boolean  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| date | `Date` | date to be checked |
+| startDate | `Date` | lower bound of date range |
+| endDate | `Date` | upper bound of date range |
+
+
 ## composeFunction
 
 This callback type is called `requestCallback` and is displayed as a global symbol.
@@ -431,3 +446,4 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [daysBetween(startDate, endDate)]:#daysbetweenstartdate-enddate
 [daysSinceDate(date)]:#dayssincedatedate
 [isDateInPast(value)]:#isdateinpastvalue
+[isBetweenDateRange(date, startDate, endDate)]:#isbetweendaterangedate-startdate-enddate

@@ -1,4 +1,4 @@
-import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday } from './time';
+import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday, isBetweenDateRange } from './time';
 
 describe('isPassedDate()', () => {
   it('last month should return true', () => {
@@ -72,5 +72,50 @@ describe('daysSinceDate()', () => {
   it('should return 1 days', () => {
     const yesterday = dateYesterday();
     expect(daysSinceDate(yesterday)).toEqual(1);
+  });
+});
+
+describe('isBetweenDateRange()', () => {
+  it('date before range should return false', () => {
+    const yesterday = dateYesterday();
+    const tomorrow = new Date();
+    const newDate = tomorrow.getDate() + 1;
+    tomorrow.setDate(newDate);
+    const test = isBetweenDateRange(yesterday, new Date(), tomorrow);
+    expect(test).toEqual(false);
+  });
+  it('date after range should return false', () => {
+    const dayAfter = new Date();
+    const anotherDate = dayAfter.getDate + 3;
+    dayAfter.setDate(anotherDate);
+    const tomorrow = new Date();
+    const newDate = tomorrow.getDate() + 1;
+    tomorrow.setDate(newDate);
+    const test = isBetweenDateRange(dayAfter, new Date(), tomorrow);
+    expect(test).toEqual(false);
+  });
+  it('date within range should return true', () => {
+    const tomorrow = new Date();
+    const newDate = tomorrow.getDate() + 1;
+    tomorrow.setDate(newDate);
+    const yesterday = dateYesterday();
+    const test = isBetweenDateRange(new Date(), yesterday, tomorrow);
+    expect(test).toEqual(true);
+  });
+  it('date equal to start date should return true', () => {
+    const tomorrow = new Date();
+    const newDate = tomorrow.getDate() + 1;
+    tomorrow.setDate(newDate);
+    const yesterday = dateYesterday();
+    const test = isBetweenDateRange(yesterday, yesterday, tomorrow);
+    expect(test).toEqual(true);
+  });
+  it('date equal to end date should return true', () => {
+    const tomorrow = new Date();
+    const newDate = tomorrow.getDate() + 1;
+    tomorrow.setDate(newDate);
+    const yesterday = dateYesterday();
+    const test = isBetweenDateRange(tomorrow, yesterday, tomorrow);
+    expect(test).toEqual(true);
   });
 });

@@ -64,3 +64,19 @@ export function isDateInPast(value) {
     date.getFullYear() <= yesterday.getFullYear()
   );
 }
+
+/**
+ * checks if a date is within a specified date range
+ * @param {Date} date date to be checked
+ * @param {Date} startDate lower bound of date range
+ * @param {Date} endDate upper bound of date range
+ * @returns {boolean} boolean
+ */
+export function isBetweenDateRange(date, startDate, endDate) {
+  const isAfterDate = daysBetween(startDate, date) >= 0;
+  const isBeforeDate = daysBetween(date, endDate) >= 0;
+  if (!isAfterDate) {
+    return false;
+  }
+  return isBeforeDate;
+}
