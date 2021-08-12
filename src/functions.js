@@ -55,7 +55,7 @@ export function compose(...fns) {
  * @param {Number} waitMs wait milliseconds
  * @returns {any}
  * @example
- * // foo should be 2
+ * // foo should be 1
  * let foo = 0;
  * const bar = fns.debounce(() => {
  *    foo += 1;
@@ -63,7 +63,6 @@ export function compose(...fns) {
  * bar();
  * bar();
  * await new Promise((r) => setTimeout(r, 110));
- * bar();
  */
 export function debounce(fn, waitMs) {
   const wait = parseInt(waitMs, 10);

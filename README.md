@@ -183,7 +183,7 @@ Creates a throttled function that only invokes func at most once per every wait 
 
 **Example**  
 ```js
-// foo should be 2
+// foo should be 1
 let foo = 0;
 const bar = fns.debounce(() => {
    foo += 1;
@@ -191,7 +191,6 @@ const bar = fns.debounce(() => {
 bar();
 bar();
 await new Promise((r) => setTimeout(r, 110));
-bar();
 ```
 
 ## trampoline(fn)
