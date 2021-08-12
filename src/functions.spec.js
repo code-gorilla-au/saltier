@@ -77,16 +77,18 @@ describe('debounce', () => {
     bar();
     await new Promise((r) => setTimeout(r, 110));
     bar();
+    await new Promise((r) => setTimeout(r, 110));
     expect(foo).toEqual(2);
   });
-  it('should pass args', async () => {
+  it('should invoke with the last args provided', async () => {
     let foo = 0;
     const bar = fns.debounce((value) => {
       foo += value;
     }, 110);
     bar(6);
     bar(1);
-    expect(foo).toEqual(6);
+    await new Promise((r) => setTimeout(r, 110));
+    expect(foo).toEqual(1);
   });
   it('should be able to return a value', async () => {
     let foo = 1;
@@ -94,6 +96,7 @@ describe('debounce', () => {
       foo += value;
       return foo;
     }, 100);
+    await new Promise((r) => setTimeout(r, 110));
     const baz = bar(6);
     expect(baz).toEqual(foo);
   });
@@ -108,6 +111,7 @@ describe('debounce', () => {
     };
     const bar = fns.debounce(slap.add4.bind(slap), 100);
     bar();
+    await new Promise((r) => setTimeout(r, 110));
     expect(slap.foo).toEqual(5);
     expect(slap.bar).toEqual(6);
   });

@@ -67,7 +67,8 @@ export function compose(...fns) {
  */
 export function debounce(fn, waitMs) {
   const wait = parseInt(waitMs, 10);
-  let lastInvoked = Date.now() - waitMs;
+  let lastInvoked = Date.now();
+  let timer;
 
   function debounced(...args) {
     const lastThis = this;
@@ -76,10 +77,16 @@ export function debounce(fn, waitMs) {
     const waitRemaining = wait - timeSinceLastInvoke;
     let result = () => undefined;
     if (waitRemaining > 0) {
+      lastInvoked = timeNow;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        result = fn.apply(lastThis, args);
+      }, wait);
       return result;
     }
 
     lastInvoked = timeNow;
+    clearTimeout(timer);
     result = fn.apply(lastThis, args);
     return result;
   }
