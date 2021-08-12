@@ -141,14 +141,40 @@ describe('throttle()', () => {
     bar();
     expect(count).toEqual(2);
   });
-  it('should invoke immediate', async () => {
-    let count = 0;
-    const bar = fns.throttle(() => {
-      count += 1;
+  it('should invoke with the last args provided', async () => {
+    let foo = 0;
+    const bar = fns.throttle((value) => {
+      foo += value;
+    }, 110);
+    bar(6);
+    bar(1);
+    await new Promise((r) => setTimeout(r, 110));
+    expect(foo).toEqual(1);
+  });
+  it('should return value', async () => {
+    let foo = 1;
+    const bar = fns.throttle((value) => {
+      foo += value;
+      return foo;
     }, 100);
+    await new Promise((r) => setTimeout(r, 110));
+    const baz = bar(6);
+    expect(baz).toEqual(foo);
+  });
+  it('should keep this context', async () => {
+    const slap = {
+      foo: 1,
+      bar: 2,
+      add4: function add4() {
+        this.foo += 4;
+        this.bar += 4;
+      },
+    };
+    const bar = fns.throttle(slap.add4.bind(slap), 100);
     bar();
     await new Promise((r) => setTimeout(r, 110));
-    expect(count).toEqual(1);
+    expect(slap.foo).toEqual(5);
+    expect(slap.bar).toEqual(6);
   });
 });
 
