@@ -117,6 +117,41 @@ describe('debounce', () => {
   });
 });
 
+describe('throttle()', () => {
+  it('should invoke 1 times', async () => {
+    let count = 0;
+    const bar = fns.throttle(() => {
+      count += 1;
+    }, 100);
+    bar();
+    bar();
+    bar();
+    await new Promise((r) => setTimeout(r, 110));
+    expect(count).toEqual(1);
+  });
+  it('should invoke 2 times', async () => {
+    let count = 0;
+    const bar = fns.throttle(() => {
+      count += 1;
+    }, 100);
+    bar();
+    bar();
+    bar();
+    await new Promise((r) => setTimeout(r, 110));
+    bar();
+    expect(count).toEqual(2);
+  });
+  it('should invoke immediate', async () => {
+    let count = 0;
+    const bar = fns.throttle(() => {
+      count += 1;
+    }, 100);
+    bar();
+    await new Promise((r) => setTimeout(r, 110));
+    expect(count).toEqual(1);
+  });
+});
+
 describe('trampoline()', () => {
   it('should return 1', () => {
     const test = fns.trampoline((val) => val);

@@ -24,6 +24,7 @@ Name | Description
 [pipe(...fns)] | Performs left-to-right function composition
 [compose(...fns)] | Performs right-to-left function composition
 [debounce(fn, waitMs)] | Creates a throttled function that only invokes func at most once per every wait milliseconds
+[throttle(fn, waitMs)] | invoke functions at most once per interval
 [trampoline(fn)] | trampoline a recursive function for a safe recursion https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
 [addPrefix(value, prefixValue)] | adds a prefix to a string if it doesn't exist already
 [stripPrefix(value, prefixes)] | Strips a string's prefix if present
@@ -191,6 +192,31 @@ const bar = fns.debounce(() => {
 bar();
 bar();
 await new Promise((r) => setTimeout(r, 110));
+```
+
+## throttle(fn, waitMs)
+
+invoke functions at most once per interval
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | [`composeFunction`] | function to be invoked |
+| waitMs | `Number` | wait in milliseconds |
+
+**Example**  
+```js
+// count should be 2
+let count = 0;
+const bar = fns.throttle(() => {
+    count += 1;
+}, 100);
+bar();
+bar();
+bar();
+await new Promise((r) => setTimeout(r, 110));
+bar();
 ```
 
 ## trampoline(fn)
@@ -437,6 +463,7 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [pipe(...fns)]:#pipefns
 [compose(...fns)]:#composefns
 [debounce(fn, waitMs)]:#debouncefn-waitms
+[throttle(fn, waitMs)]:#throttlefn-waitms
 [trampoline(fn)]:#trampolinefn
 [addPrefix(value, prefixValue)]:#addprefixvalue-prefixvalue
 [stripPrefix(value, prefixes)]:#stripprefixvalue-prefixes

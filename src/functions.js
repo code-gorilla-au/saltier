@@ -93,6 +93,50 @@ export function debounce(fn, waitMs) {
 }
 
 /**
+ * invoke functions at most once per interval
+ * @param {composeFunction} fn - function to be invoked
+ * @param {Number} waitMs - wait in milliseconds
+ * @returns {any}
+ * @example
+ * // count should be 2
+ * let count = 0;
+ * const bar = fns.throttle(() => {
+ *     count += 1;
+ * }, 100);
+ * bar();
+ * bar();
+ * bar();
+ * await new Promise((r) => setTimeout(r, 110));
+ * bar();
+ */
+export function throttle(fn, waitMs) {
+  const wait = parseInt(waitMs, 10);
+  let lastInvoked = Date.now();
+  let timer;
+
+  function throttled(...args) {
+    const lastThis = this;
+    const timeNow = Date.now();
+    const timeSinceLastInvoke = timeNow - lastInvoked;
+    const waitRemaining = wait - timeSinceLastInvoke;
+    let result = () => undefined;
+    if (waitRemaining > 0) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        result = fn.apply(lastThis, args);
+      }, wait);
+      return result;
+    }
+
+    lastInvoked = timeNow;
+    clearTimeout(timer);
+    result = fn.apply(lastThis, args);
+    return result;
+  }
+  return throttled;
+}
+
+/**
  * trampoline a recursive function for a safe recursion
  * https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
  * @param {Function} fn function to trampoline
