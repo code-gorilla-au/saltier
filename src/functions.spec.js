@@ -144,7 +144,7 @@ describe('throttle()', () => {
   it('should invoke with the last args provided', async () => {
     let foo = 0;
     const bar = fns.throttle((value) => {
-      foo += value;
+      foo = value;
     }, 110);
     bar(6);
     bar(1);

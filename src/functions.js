@@ -111,7 +111,7 @@ export function debounce(fn, waitMs) {
  */
 export function throttle(fn, waitMs) {
   const wait = parseInt(waitMs, 10);
-  let lastInvoked = Date.now() - wait;
+  let lastInvoked = Date.now();
   let timer;
 
   function throttled(...args) {
