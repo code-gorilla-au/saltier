@@ -75,18 +75,18 @@ export function debounce(fn, waitMs) {
     const timeSinceLastInvoke = timeNow - lastInvoked;
     const waitRemaining = wait - timeSinceLastInvoke;
     let result = () => undefined;
-    if (waitRemaining > 0) {
+    if (waitRemaining <= 0) {
       lastInvoked = timeNow;
       clearTimeout(timer);
-      timer = setTimeout(() => {
-        result = fn.apply(lastThis, args);
-      }, wait);
+      result = fn.apply(lastThis, args);
       return result;
     }
 
     lastInvoked = timeNow;
     clearTimeout(timer);
-    result = fn.apply(lastThis, args);
+    timer = setTimeout(() => {
+      result = fn.apply(lastThis, args);
+    }, wait);
     return result;
   }
   return debounced;
@@ -120,17 +120,16 @@ export function throttle(fn, waitMs) {
     const timeSinceLastInvoke = timeNow - lastInvoked;
     const waitRemaining = wait - timeSinceLastInvoke;
     let result = () => undefined;
-    if (waitRemaining > 0) {
+    if (waitRemaining <= 0) {
+      lastInvoked = timeNow;
       clearTimeout(timer);
-      timer = setTimeout(() => {
-        result = fn.apply(lastThis, args);
-      }, wait);
+      result = fn.apply(lastThis, args);
       return result;
     }
-
-    lastInvoked = timeNow;
     clearTimeout(timer);
-    result = fn.apply(lastThis, args);
+    timer = setTimeout(() => {
+      result = fn.apply(lastThis, args);
+    }, wait);
     return result;
   }
   return throttled;
