@@ -50,21 +50,14 @@ export function compose(...fns) {
 }
 
 /**
- * Creates a throttled function that only invokes func at most once per every wait milliseconds
- * @param {composeFunction} fn function to be invoked
- * @param {Number} waitMs wait milliseconds
- * @returns {any}
- * @example
- * // foo should be 1
- * let foo = 0;
- * const bar = fns.debounce(() => {
- *    foo += 1;
- * }, 100);
- * bar();
- * bar();
- * await new Promise((r) => setTimeout(r, 110));
+ * base debounce function
+ * @param {Function} fn - function to be invoked
+ * @param {number} waitMs - time to wait
+ * @param {Object} options - function options
+ * @param {boolean} options.throttle - converts debounce to a throttle
+ * @returns
  */
-export function debounce(fn, waitMs) {
+function baseDebounce(fn, waitMs, options = { throttle: false }) {
   const wait = parseInt(waitMs, 10);
   let lastInvoked = Date.now();
   let timer;
@@ -82,7 +75,9 @@ export function debounce(fn, waitMs) {
       return result;
     }
 
-    lastInvoked = timeNow;
+    if (!options.throttle) {
+      lastInvoked = timeNow;
+    }
     clearTimeout(timer);
     timer = setTimeout(() => {
       result = fn.apply(lastThis, args);
@@ -90,6 +85,25 @@ export function debounce(fn, waitMs) {
     return result;
   }
   return debounced;
+}
+
+/**
+ * Creates a throttled function that only invokes func at most once per every wait milliseconds
+ * @param {composeFunction} fn function to be invoked
+ * @param {Number} waitMs wait milliseconds
+ * @returns {any}
+ * @example
+ * // foo should be 1
+ * let foo = 0;
+ * const bar = fns.debounce(() => {
+ *    foo += 1;
+ * }, 100);
+ * bar();
+ * bar();
+ * await new Promise((r) => setTimeout(r, 110));
+ */
+export function debounce(fn, waitMs) {
+  return baseDebounce(fn, waitMs, { throttle: false });
 }
 
 /**
@@ -110,29 +124,7 @@ export function debounce(fn, waitMs) {
  * bar();
  */
 export function throttle(fn, waitMs) {
-  const wait = parseInt(waitMs, 10);
-  let lastInvoked = Date.now();
-  let timer;
-
-  function throttled(...args) {
-    const lastThis = this;
-    const timeNow = Date.now();
-    const timeSinceLastInvoke = timeNow - lastInvoked;
-    const waitRemaining = wait - timeSinceLastInvoke;
-    let result = () => undefined;
-    if (waitRemaining <= 0) {
-      lastInvoked = timeNow;
-      clearTimeout(timer);
-      result = fn.apply(lastThis, args);
-      return result;
-    }
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      result = fn.apply(lastThis, args);
-    }, wait);
-    return result;
-  }
-  return throttled;
+  return baseDebounce(fn, waitMs, { throttle: true });
 }
 
 /**
