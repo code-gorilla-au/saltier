@@ -1,4 +1,4 @@
-import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday, isBetweenDateRange } from './time';
+import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday, isBetweenDateRange, relativeFromToday } from './time';
 
 describe('isPassedDate()', () => {
   it('last month should return true', () => {
@@ -118,4 +118,37 @@ describe('isBetweenDateRange()', () => {
     const test = isBetweenDateRange(tomorrow, yesterday, tomorrow);
     expect(test).toEqual(true);
   });
+});
+
+describe('relativeFromToday', () => {
+  it('should return 1 minute ago', () => {
+    const now = new Date();
+    const sub1Min = now.getMinutes() - 1;
+    now.setMinutes(sub1Min);
+    expect(relativeFromToday(now)).toEqual('1 minute ago');
+  });
+  it('should return 1 hour ago', () => {
+    const now = new Date();
+    const sub1Min = now.getHours() - 1;
+    now.setHours(sub1Min);
+    expect(relativeFromToday(now)).toEqual('1 hour ago');
+  });
+  it('should return 1 day ago', () => {
+    const now = new Date();
+    const sub1Day = now.getDate() - 1;
+    now.setDate(sub1Day);
+    expect(relativeFromToday(now)).toEqual('1 day ago');
+  });
+  it('should return 1 month ago', () => {
+    const now = new Date();
+    const sub1Month = now.getMonth() - 1;
+    now.setMonth(sub1Month);
+    expect(relativeFromToday(now)).toEqual('1 day ago');
+  });
+  it.todo('should return 1 year ago');
+  it.todo('should return in 1 year');
+  it.todo('should return in 1 month');
+  it.todo('should return in 1 day');
+  it.todo('should return in 1 hour');
+  it.todo('should return in 1 minute');
 });

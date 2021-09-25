@@ -1,8 +1,20 @@
 /**
+ * Milliseconds per minute
+ * @private
+ */
+const msPerMin = 60000;
+
+/**
+ * Milliseconds per hour
+ * @private
+ */
+const msPerHour = msPerMin * 60;
+
+/**
  * Milliseconds per day
  * @private
  */
-const millisecondsPerDay = 86400000;
+const msPerDay = msPerHour * 24;
 
 /**
  * returns date converted to UTC
@@ -21,7 +33,7 @@ export function dateToUTC(date) {
  * @param {Date} endDate date object
  */
 export function daysBetween(startDate, endDate) {
-  return Math.trunc((dateToUTC(endDate) - dateToUTC(startDate)) / millisecondsPerDay);
+  return Math.trunc((dateToUTC(endDate) - dateToUTC(startDate)) / msPerDay);
 }
 
 /**
@@ -82,4 +94,32 @@ export function isBetweenDateRange(date, startDate, endDate) {
     return false;
   }
   return isBeforeDate;
+}
+
+/**
+ * returns the date relative time formatting
+ * @param {Date} date - date to format
+ * @returns {string} date in string format
+ */
+export function relativeFromToday(date = new Date()) {
+  const today = new Date();
+  const rawDifference = date.getTime() - today.getTime();
+  const isNegative = Math.sign(rawDifference) === -1;
+  let formatUnit = 'minute';
+  let relativeValue = '';
+  const difference = Math.abs(rawDifference);
+  if (difference >= msPerMin && difference < msPerHour) {
+    formatUnit = 'minute';
+    relativeValue = Math.trunc(difference / msPerMin);
+  }
+  if (difference >= msPerHour && difference < msPerDay) {
+    formatUnit = 'hour';
+    relativeValue = Math.trunc(difference / msPerHour);
+  }
+  if (difference >= msPerDay) {
+    formatUnit = 'day';
+    relativeValue = Math.trunc(difference / msPerDay);
+  }
+  relativeValue = isNegative ? -Math.abs(relativeValue) : relativeValue;
+  return new Intl.RelativeTimeFormat().format(relativeValue, formatUnit);
 }
