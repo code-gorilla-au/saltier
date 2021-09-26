@@ -121,6 +121,18 @@ describe('isBetweenDateRange()', () => {
 });
 
 describe('relativeFromToday', () => {
+  it('should return 1 second ago', () => {
+    const oneSecondAgo = new Date();
+    const sub1Sec = oneSecondAgo.getSeconds() - 1;
+    oneSecondAgo.setSeconds(sub1Sec);
+    expect(relativeFromToday(oneSecondAgo)).toEqual('1 second ago');
+  });
+  it('should return 2 seconds ago', () => {
+    const twoSecondsAgo = new Date();
+    const sub2Sec = twoSecondsAgo.getSeconds() - 2;
+    twoSecondsAgo.setSeconds(sub2Sec);
+    expect(relativeFromToday(twoSecondsAgo)).toEqual('2 seconds ago');
+  });
   it('should return 1 minute ago', () => {
     const now = new Date();
     const sub1Min = now.getMinutes() - 1;
@@ -140,15 +152,41 @@ describe('relativeFromToday', () => {
     expect(relativeFromToday(now)).toEqual('1 day ago');
   });
   it('should return 1 month ago', () => {
-    const now = new Date();
-    const sub1Month = now.getMonth() - 1;
-    now.setMonth(sub1Month);
-    expect(relativeFromToday(now)).toEqual('1 day ago');
+    const lastMonth = new Date();
+    const sub1Month = lastMonth.getMonth() - 1;
+    lastMonth.setMonth(sub1Month);
+    expect(relativeFromToday(lastMonth)).toEqual('1 month ago');
   });
   it.todo('should return 1 year ago');
   it.todo('should return in 1 year');
-  it.todo('should return in 1 month');
-  it.todo('should return in 1 day');
-  it.todo('should return in 1 hour');
-  it.todo('should return in 1 minute');
+  it('should return in 1 month', () => {
+    const nextMonth = new Date();
+    const add1Month = nextMonth.getMonth() + 1;
+    nextMonth.setMonth(add1Month);
+    expect(relativeFromToday(nextMonth)).toEqual('in 1 month');
+  });
+  it('should return in 1 day', () => {
+    const nextDay = new Date();
+    const add1Day = nextDay.getDate() + 1;
+    nextDay.setDate(add1Day);
+    expect(relativeFromToday(nextDay)).toEqual('in 1 day');
+  });
+  it('should return in 1 hour', () => {
+    const nextHour = new Date();
+    const add1Hour = nextHour.getHours() + 1;
+    nextHour.setHours(add1Hour);
+    expect(relativeFromToday(nextHour)).toEqual('in 1 hour');
+  });
+  it('should return in 1 minute', () => {
+    const nextMin = new Date();
+    const add1Hour = nextMin.getMinutes() + 1;
+    nextMin.setMinutes(add1Hour);
+    expect(relativeFromToday(nextMin)).toEqual('in 1 minute');
+  });
+  it('should return in 1 second', () => {
+    const nextSecond = new Date();
+    const add1Sec = nextSecond.getSeconds() + 1;
+    nextSecond.setSeconds(add1Sec);
+    expect(relativeFromToday(nextSecond)).toEqual('in 1 second');
+  });
 });

@@ -1,8 +1,13 @@
 /**
+ * Milliseconds per second
+ * @private
+ */
+const msPerSec = 1000;
+/**
  * Milliseconds per minute
  * @private
  */
-const msPerMin = 60000;
+const msPerMin = msPerSec * 60;
 
 /**
  * Milliseconds per hour
@@ -15,6 +20,18 @@ const msPerHour = msPerMin * 60;
  * @private
  */
 const msPerDay = msPerHour * 24;
+
+/**
+ * Milliseconds per week
+ * @private
+ */
+const msPerWeek = msPerDay * 7;
+
+/**
+ * Milliseconds per month
+ * @private
+ */
+const msPerMonth = msPerDay * 28;
 
 /**
  * returns date converted to UTC
@@ -108,6 +125,10 @@ export function relativeFromToday(date = new Date()) {
   let formatUnit = 'minute';
   let relativeValue = '';
   const difference = Math.abs(rawDifference);
+  if (difference < msPerMin) {
+    formatUnit = 'second';
+    relativeValue = Math.trunc(difference / msPerSec);
+  }
   if (difference >= msPerMin && difference < msPerHour) {
     formatUnit = 'minute';
     relativeValue = Math.trunc(difference / msPerMin);
@@ -116,9 +137,17 @@ export function relativeFromToday(date = new Date()) {
     formatUnit = 'hour';
     relativeValue = Math.trunc(difference / msPerHour);
   }
-  if (difference >= msPerDay) {
+  if (difference >= msPerDay && difference < msPerWeek) {
     formatUnit = 'day';
     relativeValue = Math.trunc(difference / msPerDay);
+  }
+  if (difference >= msPerWeek && difference < msPerMonth) {
+    formatUnit = 'week';
+    relativeValue = Math.trunc(difference / msPerWeek);
+  }
+  if (difference >= msPerMonth) {
+    formatUnit = 'month';
+    relativeValue = Math.trunc(difference / msPerMonth);
   }
   relativeValue = isNegative ? -Math.abs(relativeValue) : relativeValue;
   return new Intl.RelativeTimeFormat().format(relativeValue, formatUnit);
