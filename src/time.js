@@ -113,14 +113,8 @@ export function isBetweenDateRange(date, startDate, endDate) {
   return isBeforeDate;
 }
 
-/**
- * returns the date relative time formatting
- * @param {Date} date - date to format
- * @returns {string} date in string format
- */
-export function relativeFromToday(date = new Date()) {
-  const today = new Date();
-  const rawDifference = date.getTime() - today.getTime();
+function getRelativeDiff(sourceDate = new Date(), targetDate = new Date()) {
+  const rawDifference = targetDate.getTime() - sourceDate.getTime();
   const isNegative = Math.sign(rawDifference) === -1;
   let formatUnit = 'minute';
   let relativeValue = '';
@@ -150,5 +144,21 @@ export function relativeFromToday(date = new Date()) {
     relativeValue = Math.trunc(difference / msPerMonth);
   }
   relativeValue = isNegative ? -Math.abs(relativeValue) : relativeValue;
+  return {
+    relativeValue, formatUnit,
+  };
+}
+
+/**
+ * returns the date relative time formatting
+ * @param {Date} date - date to format
+ * @returns {string} date in string format
+ */
+export function relativeFromToday(date = new Date()) {
+  if (!(date instanceof Date) && !Number.isNaN(date)) {
+    throw Error('date must be a date object');
+  }
+  const today = new Date();
+  const { relativeValue, formatUnit } = getRelativeDiff(today, date);
   return new Intl.RelativeTimeFormat().format(relativeValue, formatUnit);
 }

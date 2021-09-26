@@ -159,6 +159,11 @@ describe('relativeFromToday', () => {
   });
   it.todo('should return 1 year ago');
   it.todo('should return in 1 year');
+  it('should throw error if not date', () => {
+    expect(() => {
+      relativeFromToday(132);
+    }).toThrowError('date must be a date object');
+  });
   it('should return in 1 month', () => {
     const nextMonth = new Date();
     const add1Month = nextMonth.getMonth() + 1;
