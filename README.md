@@ -23,7 +23,7 @@ Name | Description
 [composeTwo(fn1, fn2)] | Compose two function
 [pipe(...fns)] | Performs left-to-right function composition
 [compose(...fns)] | Performs right-to-left function composition
-[debounce(fn, waitMs)] | Creates a throttled function that only invokes func at most once per every wait milliseconds
+[debounce(fn, waitMs)] | Creates a throttled function that invokes after the provided time. Any attempt to invoke the function before the wait will reset the timer
 [throttle(fn, waitMs)] | invoke functions at most once per interval
 [trampoline(fn)] | trampoline a recursive function for a safe recursion https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
 [addPrefix(value, prefixValue)] | adds a prefix to a string if it doesn't exist already
@@ -175,7 +175,8 @@ const stuff = fns.compose(
 
 ## debounce(fn, waitMs)
 
-Creates a throttled function that only invokes func at most once per every wait milliseconds
+Creates a throttled function that invokes after the provided time.
+Any attempt to invoke the function before the wait will reset the timer
 
 **Kind**: global function  
 
