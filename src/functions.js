@@ -89,7 +89,8 @@ function baseDebounce(fn, waitMs, options = { throttle: false }) {
 }
 
 /**
- * Creates a throttled function that only invokes func at most once per every wait milliseconds
+ * Creates a throttled function that invokes after the provided time.
+ * Any attempt to invoke the function before the wait will reset the timer
  * @param {composeFunction} fn function to be invoked
  * @param {Number} waitMs wait milliseconds
  * @returns {any}
