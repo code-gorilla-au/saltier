@@ -39,12 +39,14 @@ Name | Description
 [daysSinceDate(date)] | returns the number of days since the given date
 [isDateInPast(value)] | Checks if date is in the past
 [isBetweenDateRange(date, startDate, endDate)] | checks if a date is within a specified date range
+[relativeFromToday(date)] | returns the date relative time formatting
 
 ## Typedefs
 
 Name | Description
 ------ | -----------
 [composeFunction] | This callback type is called `requestCallback` and is displayed as a global symbol.
+[RelativeTimeFormat] | 
 
 
 ## chunk(chunkSize, list)
@@ -441,6 +443,18 @@ checks if a date is within a specified date range
 isBetweenDateRange(today(), yesterday(), tomorrow())
 ```
 
+## relativeFromToday(date)
+
+returns the date relative time formatting
+
+**Kind**: global function  
+**Returns**: `string` - date in string format  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| date | `Date` | date to format |
+
+
 ## composeFunction
 
 This callback type is called `requestCallback` and is displayed as a global symbol.
@@ -451,9 +465,21 @@ This callback type is called `requestCallback` and is displayed as a global symb
 | --- | --- |
 | value | `any` | 
 
+
+## RelativeTimeFormat
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| relativeValue | `Number` | relative value (can be negative) |
+| formatUnit | `String` | format units (seconds, minutes, days, weeks, months) |
+
 <!-- LINKS -->
 
 [composeFunction]:#composefunction
+[RelativeTimeFormat]:#relativetimeformat
 [`composeFunction`]:#composefunction
 [chunk(chunkSize, list)]:#chunkchunksize-list
 [tail(list)]:#taillist
@@ -478,3 +504,4 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [daysSinceDate(date)]:#dayssincedatedate
 [isDateInPast(value)]:#isdateinpastvalue
 [isBetweenDateRange(date, startDate, endDate)]:#isbetweendaterangedate-startdate-enddate
+[relativeFromToday(date)]:#relativefromtodaydate

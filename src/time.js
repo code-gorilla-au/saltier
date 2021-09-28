@@ -113,11 +113,24 @@ export function isBetweenDateRange(date, startDate, endDate) {
   return isBeforeDate;
 }
 
+/**
+ * @typedef {Object} RelativeTimeFormat
+ * @property {Number} relativeValue - relative value (can be negative)
+ * @property {String} formatUnit - format units (seconds, minutes, days, weeks, months)
+ */
+
+/**
+ * returns the relative value and unit measurement for a difference between time.
+ * @private
+ * @param {Date} sourceDate
+ * @param {Date} targetDate
+ * @returns {RelativeTimeFormat}
+ */
 function getRelativeDiff(sourceDate = new Date(), targetDate = new Date()) {
   const rawDifference = targetDate.getTime() - sourceDate.getTime();
   const isNegative = Math.sign(rawDifference) === -1;
   let formatUnit = 'minute';
-  let relativeValue = '';
+  let relativeValue = 0;
   const difference = Math.abs(rawDifference);
   if (difference < msPerMin) {
     formatUnit = 'second';

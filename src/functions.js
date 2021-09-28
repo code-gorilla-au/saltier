@@ -51,11 +51,12 @@ export function compose(...fns) {
 
 /**
  * base debounce function
+ * @private
  * @param {Function} fn - function to be invoked
  * @param {number} waitMs - time to wait
  * @param {Object} options - function options
  * @param {boolean} options.throttle - converts debounce to a throttle
- * @returns
+ * @returns {Function}
  */
 function baseDebounce(fn, waitMs, options = { throttle: false }) {
   const wait = parseInt(waitMs, 10);
