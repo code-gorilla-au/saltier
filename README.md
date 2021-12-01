@@ -40,6 +40,7 @@ Name | Description
 [isDateInPast(value)] | Checks if date is in the past
 [isBetweenDateRange(date, startDate, endDate)] | checks if a date is within a specified date range
 [relativeFromToday(date)] | returns the date relative time formatting
+[timer(initTime, callback)] | simple stop watch with pause and reset
 
 ## Typedefs
 
@@ -456,6 +457,25 @@ returns the date relative time formatting
 | date | `Date` | date to format |
 
 
+## timer(initTime, callback)
+
+simple stop watch with pause and reset
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| initTime | `Number` | starting time to count down |
+| callback | `TimerFunc` | callback function |
+
+**Example**  
+```js
+const stopwatch = timer((value) => {
+   console.log(value);
+});
+stopwatch.start();
+```
+
 ## composeFunction
 
 This callback type is called `requestCallback` and is displayed as a global symbol.
@@ -506,3 +526,4 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [isDateInPast(value)]:#isdateinpastvalue
 [isBetweenDateRange(date, startDate, endDate)]:#isbetweendaterangedate-startdate-enddate
 [relativeFromToday(date)]:#relativefromtodaydate
+[timer(initTime, callback)]:#timerinittime-callback

@@ -3,13 +3,14 @@
  * Callback function
  * @callback TimerFunc
  * @param {number} remainingTime remaining time
+ * @private
  */
 
 /**
  * simple stop watch with pause and reset
  * @param {Number} initTime starting time to count down
  * @param {TimerFunc} callback callback function
- * @returns
+ * @returns {void}
  * @example
  * const stopwatch = timer((value) => {
  *    console.log(value);
