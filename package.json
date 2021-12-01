@@ -13,7 +13,7 @@
     "test": "jest --forceExit --detectOpenHandles",
     "test:coverage": "jest --forceExit --detectOpenHandles --coverage",
     "generate": "jsdoc2md --template docs/README.hbs --plugin @godaddy/dmd --files src/*.js > README.md",
-    "scan": "npx hawkeye scan"
+    "scan": "npx retire -p && npm audit --production"
   },
   "repository": {
     "type": "git",
