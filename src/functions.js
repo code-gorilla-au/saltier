@@ -60,10 +60,13 @@ export function compose(...fns) {
  */
 function baseDebounce(fn, waitMs, options = { throttle: false }) {
   const wait = parseInt(waitMs, 10);
-  let lastInvoked = Date.now();
+  let lastInvoked;
   let timer;
 
   function debounced(...args) {
+    if (!lastInvoked) {
+      lastInvoked = Date.now();
+    }
     const lastThis = this;
     const timeNow = Date.now();
     const timeSinceLastInvoke = timeNow - lastInvoked;

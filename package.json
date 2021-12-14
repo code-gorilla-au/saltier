@@ -11,6 +11,7 @@
     "clean": "rm -rf coverage",
     "pretest": "npm run clean",
     "test": "jest --forceExit --detectOpenHandles",
+    "posttest": "npm run generate",
     "test:coverage": "jest --forceExit --detectOpenHandles --coverage",
     "generate": "jsdoc2md --template docs/README.hbs --plugin @godaddy/dmd --files src/*.js > README.md",
     "scan": "npx retire -p && npm audit --production"

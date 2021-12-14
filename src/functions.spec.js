@@ -2,9 +2,7 @@ import * as fns from './functions';
 
 describe('pipe()', () => {
   it('should return 3', () => {
-    const addTwo = fns.pipe(
-      (value) => value + 2,
-    )(1);
+    const addTwo = fns.pipe((value) => value + 2)(1);
     expect(addTwo).toEqual(3);
   });
   it('should return 3', () => {
@@ -52,10 +50,7 @@ describe('composeTwo()', () => {
     function add(val) {
       return (next) => val + next;
     }
-    const stuff = fns.composeTwo(
-      add(2),
-      add(3),
-    );
+    const stuff = fns.composeTwo(add(2), add(3));
     expect(stuff(5)).toEqual(10);
   });
   it('should return 12', () => {
@@ -68,39 +63,46 @@ describe('composeTwo()', () => {
 });
 
 describe('debounce', () => {
-  it('should invoke twice', async () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  });
+  it('should invoke twice', () => {
     let foo = 0;
     const bar = fns.debounce(() => {
       foo += 1;
     }, 100);
     bar();
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(300);
     expect(foo).toEqual(2);
   });
-  it('should invoke with the last args provided', async () => {
+  it('should invoke with the last args provided', () => {
     let foo = 0;
     const bar = fns.debounce((value) => {
       foo += value;
     }, 110);
     bar(6);
     bar(1);
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     expect(foo).toEqual(1);
   });
-  it('should be able to return a value', async () => {
+  it('should not invoke if debounce is declared but not executed', () => {
     let foo = 1;
     const bar = fns.debounce((value) => {
       foo += value;
       return foo;
     }, 100);
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     const baz = bar(6);
-    expect(baz).toEqual(foo);
+    expect(baz).toEqual(expect.any(Function));
   });
-  it('should keep this context', async () => {
+  it('should keep this context', () => {
     const slap = {
       foo: 1,
       bar: 2,
@@ -111,14 +113,21 @@ describe('debounce', () => {
     };
     const bar = fns.debounce(slap.add4.bind(slap), 100);
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     expect(slap.foo).toEqual(5);
     expect(slap.bar).toEqual(6);
   });
 });
 
 describe('throttle()', () => {
-  it('should invoke 1 times', async () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  });
+  it('should invoke 1 times', () => {
     let count = 0;
     const bar = fns.throttle(() => {
       count += 1;
@@ -126,10 +135,10 @@ describe('throttle()', () => {
     bar();
     bar();
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     expect(count).toEqual(1);
   });
-  it('should invoke 2 times', async () => {
+  it('should invoke 2 times', () => {
     let count = 0;
     const bar = fns.throttle(() => {
       count += 1;
@@ -137,31 +146,33 @@ describe('throttle()', () => {
     bar();
     bar();
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     bar();
+    bar();
+    jest.runTimersToTime(110);
     expect(count).toEqual(2);
   });
-  it('should invoke with the last args provided', async () => {
+  it('should invoke with the last args provided', () => {
     let foo = 0;
     const bar = fns.throttle((value) => {
       foo = value;
     }, 110);
     bar(6);
     bar(1);
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     expect(foo).toEqual(1);
   });
-  it('should return value', async () => {
+  it('should not invoke if throttle declared but not executed', () => {
     let foo = 1;
     const bar = fns.throttle((value) => {
       foo += value;
       return foo;
     }, 100);
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     const baz = bar(6);
-    expect(baz).toEqual(foo);
+    expect(baz).toEqual(expect.any(Function));
   });
-  it('should keep this context', async () => {
+  it('should keep this context', () => {
     const slap = {
       foo: 1,
       bar: 2,
@@ -172,7 +183,7 @@ describe('throttle()', () => {
     };
     const bar = fns.throttle(slap.add4.bind(slap), 100);
     bar();
-    await new Promise((r) => setTimeout(r, 110));
+    jest.runTimersToTime(110);
     expect(slap.foo).toEqual(5);
     expect(slap.bar).toEqual(6);
   });
