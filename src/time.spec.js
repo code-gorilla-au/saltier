@@ -1,4 +1,13 @@
-import { isDateInPast, dateToUTC, daysBetween, daysSinceDate, dateYesterday, isBetweenDateRange, relativeFromToday } from './time';
+import {
+  isDateInPast,
+  dateToUTC,
+  daysBetween,
+  daysSinceDate,
+  dateYesterday,
+  isBetweenDateRange,
+  relativeFromToday,
+  relativeFromDate,
+} from './time';
 
 describe('isPassedDate()', () => {
   it('last month should return true', () => {
@@ -193,5 +202,14 @@ describe('relativeFromToday', () => {
     const add1Sec = nextSecond.getSeconds() + 1;
     nextSecond.setSeconds(add1Sec);
     expect(relativeFromToday(nextSecond)).toEqual('in 1 second');
+  });
+});
+
+describe('relativeFromDate', () => {
+  it('today + yesterday should return 1 day', () => {
+    expect(relativeFromDate(new Date(), dateYesterday())).toEqual('1 day ago');
+  });
+  it('yesterday + today should return tomorrow', () => {
+    expect(relativeFromDate(dateYesterday(), new Date())).toEqual('in 1 day');
   });
 });

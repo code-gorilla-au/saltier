@@ -83,15 +83,10 @@ export function isDateInPast(value) {
   }
 
   if (date.getFullYear() === yesterday.getFullYear()) {
-    return (
-      dayOfMonth() &&
-      date.getMonth() <= yesterday.getMonth()
-    );
+    return dayOfMonth() && date.getMonth() <= yesterday.getMonth();
   }
 
-  return (
-    date.getFullYear() <= yesterday.getFullYear()
-  );
+  return date.getFullYear() <= yesterday.getFullYear();
 }
 
 /**
@@ -158,7 +153,8 @@ function getRelativeDiff(sourceDate = new Date(), targetDate = new Date()) {
   }
   relativeValue = isNegative ? -Math.abs(relativeValue) : relativeValue;
   return {
-    relativeValue, formatUnit,
+    relativeValue,
+    formatUnit,
   };
 }
 
@@ -173,5 +169,16 @@ export function relativeFromToday(date = new Date()) {
   }
   const today = new Date();
   const { relativeValue, formatUnit } = getRelativeDiff(today, date);
+  return new Intl.RelativeTimeFormat().format(relativeValue, formatUnit);
+}
+
+export function relativeFromDate(source = new Date(), target = new Date()) {
+  if (!(source instanceof Date) && !Number.isNaN(source)) {
+    throw Error('source must be a date object');
+  }
+  if (!(target instanceof Date) && !Number.isNaN(target)) {
+    throw Error('target must be a date object');
+  }
+  const { relativeValue, formatUnit } = getRelativeDiff(source, target);
   return new Intl.RelativeTimeFormat().format(relativeValue, formatUnit);
 }
