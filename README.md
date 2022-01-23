@@ -41,6 +41,9 @@ Name | Description
 [isBetweenDateRange(date, startDate, endDate)] | checks if a date is within a specified date range
 [relativeFromToday(date)] | returns the date relative time formatting
 [timer(initTime, callback)] | simple stop watch with pause and reset
+[start()] | Start timer
+[pause()] | Pause timer
+[reset()] | Reset timer
 
 ## Typedefs
 
@@ -476,6 +479,24 @@ const stopwatch = timer((value) => {
 stopwatch.start();
 ```
 
+## start()
+
+Start timer
+
+**Kind**: global function  
+
+## pause()
+
+Pause timer
+
+**Kind**: global function  
+
+## reset()
+
+Reset timer
+
+**Kind**: global function  
+
 ## composeFunction
 
 This callback type is called `requestCallback` and is displayed as a global symbol.
@@ -527,3 +548,6 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [isBetweenDateRange(date, startDate, endDate)]:#isbetweendaterangedate-startdate-enddate
 [relativeFromToday(date)]:#relativefromtodaydate
 [timer(initTime, callback)]:#timerinittime-callback
+[start()]:#start
+[pause()]:#pause
+[reset()]:#reset

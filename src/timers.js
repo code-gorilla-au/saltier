@@ -32,12 +32,21 @@ export function timer(initTime, callback = () => {}) {
     callback(timeLeft);
   }
   return {
+    /**
+     * Start timer
+     */
     start() {
       timeHandler = setInterval(handleTime, defaultInterval);
     },
+    /**
+     * Pause timer
+     */
     pause() {
       clearInterval(timeHandler);
     },
+    /**
+     * Reset timer
+     */
     reset() {
       clearInterval(timeHandler);
       timeLeft = resetTime;
