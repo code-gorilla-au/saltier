@@ -158,3 +158,84 @@ export function trampoline(fn) {
     return result;
   };
 }
+
+/**
+ * Restricts a number to be within range
+ * @param {number} min min value
+ * @param {number} max max value
+ * @param {number} value value to be evaluated
+ * @example
+ * // returns 1
+ * const value = clamp(1,10,-1);
+ *
+ * @example
+ * // returns 10
+ * const value = clamp(1, 10, 11);
+ *
+ * @example
+ * // returns 5
+ * const value = clamp(1, 10, 5);
+ */
+export function clamp(min, max, value) {
+  if (value <= min) {
+    return min;
+  }
+  if (value >= max) {
+    return max;
+  }
+  return value;
+}
+
+/**
+ * iterate over an object and either pick or omit properties based on keys.
+ * returns new object.
+ * @private
+ * @param {string[]} keys - properties to evaluate
+ * @param {object} obj - object to iterate over
+ * @param {object} options - iteration options
+ */
+function baseSelector(keys, obj, options = { omit: true }) {
+  if (!Array.isArray(keys) || keys.length === 0) {
+    return obj;
+  }
+  const returnObj = {};
+  const objEntries = Object.entries(obj);
+  objEntries.forEach(([key, value]) => {
+    if (options.omit) {
+      if (!keys.includes(key)) {
+        returnObj[key] = value;
+      }
+    } else {
+      if (!keys.includes(key)) {
+        return;
+      }
+      returnObj[key] = value;
+    }
+  });
+  return returnObj;
+}
+
+/**
+ * Returns a partial copy of an object omitting the keys specified.
+ * @param {string[]} keys - properties to omit
+ * @param {object} obj - object to iterate
+ * @example
+ * // should return { a: 1 }
+ * omit(['b'], { a:1, b:2 })
+ */
+export function omit(keys, obj) {
+  return baseSelector(keys, obj, { omit: true });
+}
+
+/**
+ * Returns a partial copy of an object containing only the keys specified.
+ * If the key does not exist, the property is ignored.
+ * @param {string[]} keys - properties to pick
+ * @param {object} obj - object to iterate
+ * @example
+ * // should return { a:1 }
+ * pick(['a], { a:1,b:2 })
+ */
+export function pick(keys, obj) {
+  return baseSelector(keys, obj, { omit: false });
+}

@@ -26,6 +26,9 @@ Name | Description
 [debounce(fn, waitMs)] | Creates a throttled function that invokes after the provided time. Any attempt to invoke the function before the wait will reset the timer
 [throttle(fn, waitMs)] | invoke functions at most once per interval
 [trampoline(fn)] | trampoline a recursive function for a safe recursion https://levelup.gitconnected.com/safe-recursion-with-trampoline-in-javascript-dbec2b903022
+[clamp(min, max, value)] | Restricts a number to be within range
+[omit(keys, obj)] | Returns a partial copy of an object omitting the keys specified.
+[pick(keys, obj)] | Returns a partial copy of an object containing only the keys specified. If the key does not exist, the property is ignored.
 [addPrefix(value, prefixValue)] | adds a prefix to a string if it doesn't exist already
 [stripPrefix(value, prefixes)] | Strips a string's prefix if present
 [capitalise(value)] | capitalise every word in a given sentence
@@ -247,6 +250,69 @@ function recursiveFn(n) {
   };
 }
 trampoline(recursiveFn)
+```
+
+## clamp(min, max, value)
+
+Restricts a number to be within range
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| min | `number` | min value |
+| max | `number` | max value |
+| value | `number` | value to be evaluated |
+
+**Example**  
+```js
+// returns 1
+const value = clamp(1,10,-1);
+```
+**Example**  
+```js
+// returns 10
+const value = clamp(1, 10, 11);
+```
+**Example**  
+```js
+// returns 5
+const value = clamp(1, 10, 5);
+```
+
+## omit(keys, obj)
+
+Returns a partial copy of an object omitting the keys specified.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| keys | `Array.<string>` | properties to omit |
+| obj | `object` | object to iterate |
+
+**Example**  
+```js
+// should return { a: 1 }
+omit(['b'], { a:1, b:2 })
+```
+
+## pick(keys, obj)
+
+Returns a partial copy of an object containing only the keys specified.
+If the key does not exist, the property is ignored.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| keys | `Array.<string>` | properties to pick |
+| obj | `object` | object to iterate |
+
+**Example**  
+```js
+// should return { a:1 }
+pick(['a], { a:1,b:2 })
 ```
 
 ## addPrefix(value, prefixValue)
@@ -512,6 +578,9 @@ This callback type is called `requestCallback` and is displayed as a global symb
 [debounce(fn, waitMs)]:#debouncefn-waitms
 [throttle(fn, waitMs)]:#throttlefn-waitms
 [trampoline(fn)]:#trampolinefn
+[clamp(min, max, value)]:#clampmin-max-value
+[omit(keys, obj)]:#omitkeys-obj
+[pick(keys, obj)]:#pickkeys-obj
 [addPrefix(value, prefixValue)]:#addprefixvalue-prefixvalue
 [stripPrefix(value, prefixes)]:#stripprefixvalue-prefixes
 [capitalise(value)]:#capitalisevalue

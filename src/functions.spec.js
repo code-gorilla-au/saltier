@@ -212,3 +212,44 @@ describe('trampoline()', () => {
     expect(test).toEqual(true);
   });
 });
+
+describe('clamp', () => {
+  it('should return 1', () => {
+    expect(fns.clamp(1, 10, -1)).toEqual(1);
+  });
+  it('should return 10', () => {
+    expect(fns.clamp(1, 10, 11)).toEqual(10);
+  });
+  it('should return 5', () => {
+    expect(fns.clamp(1, 10, 5)).toEqual(5);
+  });
+});
+
+describe('omit', () => {
+  it('should return { b:2 }', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.omit(['a'], obj)).toEqual({ b: 2 });
+  });
+  it('should empty keys list should return entire object', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.omit([], obj)).toEqual(obj);
+  });
+  it('should invalid keys should return entire object', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.omit(1, obj)).toEqual(obj);
+  });
+});
+describe('pick', () => {
+  it('should return { b:2 }', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.pick(['a'], obj)).toEqual({ a: 1 });
+  });
+  it('should empty keys list should return entire object', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.pick([], obj)).toEqual(obj);
+  });
+  it('should invalid keys should return entire object', () => {
+    const obj = { a: 1, b: 2 };
+    expect(fns.pick(1, obj)).toEqual(obj);
+  });
+});
