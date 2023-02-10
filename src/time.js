@@ -38,10 +38,7 @@ const msPerMonth = msPerDay * 28;
  * @param {Date} date date object
  */
 export function dateToUTC(date) {
-  const minutes = date.getMinutes() - date.getTimezoneOffset();
-  const newDate = new Date(date);
-  newDate.setMinutes(minutes);
-  return newDate;
+  return new Date(date.toUTCString());
 }
 
 /**

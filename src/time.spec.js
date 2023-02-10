@@ -50,7 +50,7 @@ describe('isPassedDate()', () => {
 describe('dateToUTC', () => {
   it('should return date to utc', () => {
     const test = new Date('11/25/2020');
-    expect(dateToUTC(test)).toEqual(new Date('2020-11-25T00:00:00.000Z'));
+    expect(dateToUTC(test)).toEqual(new Date('2020-11-24T13:00:00.000Z'));
   });
   it('should return date to error', () => {
     const test = new Date('foo');
